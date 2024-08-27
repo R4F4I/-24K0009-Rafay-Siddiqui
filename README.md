@@ -1,2 +1,2 @@
 # FAST-BAI-1A
-repo for fast bai 1a by Rafay siddiqui
+- Repo for FAST bai 1a by Rafay siddiqui
