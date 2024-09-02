@@ -13,4 +13,4 @@ this a random picture
 
 ## TASKS
 
-- [Tasks: sept 2, 2024](tasks\task_2-9-2024\task_2092024.md)
+- [Tasks: sept 2, 2024](tasks/task_2-9-2024/task_2092024.md)
