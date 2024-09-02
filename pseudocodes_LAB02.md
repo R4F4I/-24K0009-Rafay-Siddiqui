@@ -1,16 +1,18 @@
 
 ## Exponentials with multiplication
+
 <img src="https://github.com/user-attachments/assets/b1848026-cae1-40de-b8f9-a94917389702" width="500" />
 
 ## largest of 3
+
 ``` python
 input num[1], num[2], num[3]
 max = 0
 
 
 for i = 1 to 3
-	if num[i] > max
-		max = num[i]
+ if num[i] > max
+  max = num[i]
 ```
 
 ``` python
@@ -23,13 +25,11 @@ max = 0
 
 
 for i in range(0,3):
-	if num[i] > max:
-		max = num[i]
+ if num[i] > max:
+  max = num[i]
 
 print(max)
 ```
-
-
 
 ## addition of 3 without '+'
 
@@ -44,12 +44,11 @@ res = num[1] -- num[2] -- num[3]
 ```
 input m,n
 if m % n == 0:
-	print('divisor')
-	if n % 2 == 0:
-		print('even')
-	else:
-		print('odd')
+ print('divisor')
+ if n % 2 == 0:
+  print('even')
+ else:
+  print('odd')
 else:
-	print('not divisor')
+ print('not divisor')
 ```
-
