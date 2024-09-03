@@ -1,6 +1,7 @@
-# FAST-BAI-1A
+# FAST-BAI-1A semester 1
 
 - Repo for FAST bai 1a by Rafay siddiqui
+- This repo is for semester 1
 
 ## Introduction
 
