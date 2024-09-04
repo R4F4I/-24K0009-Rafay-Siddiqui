@@ -6,12 +6,18 @@
 ## Introduction
 
 - My name is rafay siddiqui
-- Im studing BSAI
+- Im studying BSAI
 
 this a random picture
 
 ![](https://www.mountainphotography.com/images/640/20100923-Capitol-Sunset.webp)
 
-## TASKS
+## PF-LAB
 
-- [Tasks: sept 2, 2024](tasks/task_2-9-2024/task_2092024.md)
+### LAB homework tasks
+
+- [Tasks: sept 2, 2024](PF-LAB/homework-tasks/task_2-9-2024/task_2092024.md)
+
+## PF-Theory
+
+### Theory homework tasks
