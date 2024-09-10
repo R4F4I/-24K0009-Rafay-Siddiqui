@@ -8,10 +8,9 @@ int main (){
 	printf("enter number:");
 	scanf("%d",&n);
 	
-	if (n>=1 && n<=9){
+	if (n>=1){
 		switch(n){
-			
-		
+
 		case 1:
 			printf("one\n");
 			break;
@@ -44,7 +43,4 @@ int main (){
 			break;
 		}
 	}
-	
-	
-	
 }
