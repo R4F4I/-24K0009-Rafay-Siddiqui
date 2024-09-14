@@ -19,29 +19,30 @@ int main (){
     printf("enter character:");
     scanf("%c",&character);
     
+    // characterASCII holds int and character holds char,
+    // hence the assignment below transfers the ascii of char into the int var
     characterASCII = character;
 
+    // if an alphabet
     if (characterASCII>=65&&characterASCII<=90||characterASCII>=97&&characterASCII<=122){
+        // if a vowel either uppercase or lower case
         if (character=='A'||character=='E'||character=='I'||character=='O'||character=='U'||character=='a'||character=='e'||character=='i'||character=='o'||character=='u'){
             printf("Vowel");
+        // else consonant
         } else {
             printf("consonant");
         }
-    }     
+    }
+    // else if a digit
     else if (characterASCII>=48&&characterASCII<=57)
     {
         printf("Digit");
     } 
+    // else special character
     else
     {
         printf("special char");
     }
-    
-    
-    
-
-    //scanf("%d",character);
-
 
     return 0;
 }

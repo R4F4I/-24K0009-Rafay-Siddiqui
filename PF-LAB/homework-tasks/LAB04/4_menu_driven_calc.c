@@ -25,6 +25,7 @@ int main (){
     switch (option)
     {
     case 1:
+    //---Circle Area Calculator---
         printf("---Circle Area Calculator---\n");
         printf("Enter the radius of circle:");
         scanf("%lf",&val1);
@@ -35,23 +36,28 @@ int main (){
 
         break;
     case 2:
-        
+    //---rectangle Area Calculator---
         printf("---rectangle Area Calculator---\n");
+        //input
         printf("Enter the length of rectangle:");
         scanf("%lf",&val1);
         printf("Enter the breadth of rectangle:");
         scanf("%lf",&val2);
 
+        // calculating area
         area = val1*val2;
 
         break;
     case 3:
+    //---Triangle Area Calculator---
         printf("---Triangle Area Calculator---\n");
+        //input
         printf("Enter the length of triangle:");
         scanf("%lf",&val1);
         printf("Enter the height of triangle:");
         scanf("%lf",&val2);
 
+        // calculating area
         area = 0.5*val1*val2;
 
         break;
@@ -60,6 +66,7 @@ int main (){
         break;
     }
 
+    //output
     printf("area is: %.2lf",area);
 
     return 0;
