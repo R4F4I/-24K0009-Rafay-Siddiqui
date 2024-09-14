@@ -1,4 +1,4 @@
-## Problem 7: Which floor…
+# Problem 7: Which floor…
 
 There are 10 floors in a building 0 to 9. The building lift/elevator has a 1 digit, 7 segment LCD Panel display to tell which floor the lift is on, as shown. The input into the LCD Panel is a 7-digit long number with only 1s and 0s. Each digit of the 7-digit long number tells which panel to light or not to light from A to G respectively, where 1 means to light the panel and 0 means to keep it off.  
 
@@ -149,7 +149,11 @@ switch (code){
 ```
 
 ## IPO Chart
+
 |input|process|output|
 |-|-|-|
-||||
+|7 digit number|case switching| number from 0 to 9|
 
+## Flowchart
+
+![prob7](drawings/prob7.drawio.png)

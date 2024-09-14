@@ -65,4 +65,4 @@ switch(ride){
 
 ## flowchart
 
-![prob6](drawings\prob6.drawio.png)
+![prob6](drawings/prob6.drawio.png)

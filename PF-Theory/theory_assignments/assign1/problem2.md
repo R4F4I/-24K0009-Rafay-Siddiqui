@@ -10,7 +10,7 @@ Mr. Bhola does not know what an even or odd number is. He is least bothered to l
 
 ## Flowchart
 
-![prob2](drawings\prob2.drawio.png)
+![prob2](drawings/prob2.drawio.png)
 
 ## pseudocode
 

@@ -34,4 +34,4 @@ else:
 
 ## flowchart
 
-![prob3](drawings\prob3.drawio.png)
+![prob3](drawings/prob3.drawio.png)

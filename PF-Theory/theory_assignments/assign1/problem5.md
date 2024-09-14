@@ -30,4 +30,4 @@ switch(crop){
 
 ## Flowchart
 
-![prob5](drawings\prob5.drawio.png)
+![prob5](drawings/prob5.drawio.png)

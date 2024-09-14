@@ -50,4 +50,4 @@ else:
 
 ## Flowchart
 
-![prob4](drawings\prob4.drawio.png)
+![prob4](drawings/prob4.drawio.png)
