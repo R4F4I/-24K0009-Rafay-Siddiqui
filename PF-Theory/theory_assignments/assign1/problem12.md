@@ -30,7 +30,7 @@ m=3
 jug1 = n  // space available
 jug2 = m  // space available
 
-while jug != n-4: // all the operations below will be performed iteratively until the space in jug1 is not n-4 where n = space in jug1 i.e 5
+while jug1 != n-4: // all the operations below will be performed iteratively until the space in jug1 is not n-4 where n = space in jug1 i.e 5
     while jug1>0:
         jug1 = jug1 - jug 2 
         // jug1 = 5-3 =2 -> space available in jug1
@@ -50,3 +50,7 @@ while jug != n-4: // all the operations below will be performed iteratively unti
 |input|process|output|
 |-|-|-|
 |jug1 space, jug2 space, amount desired | perform an iterative process of filling the larger jug with smaller jug and and its contents until the condition is met| the desired amount of water|
+
+## flowchart
+
+![prob12](drawings/prob12.drawio.png)

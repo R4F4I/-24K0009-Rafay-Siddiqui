@@ -24,3 +24,5 @@ this a random picture
 ## PF-Theory
 
 ### Theory homework tasks
+
+- [Assign1: sept 16, 2024](PF-Theory/theory_assignments/assign1/)

@@ -5,28 +5,28 @@ NOTE: For this problem you may ignore the leap years when calculating age but no
 Mr. Bhoola is trying to figure out how old someone is, but he keeps getting confused! He needs your help. Your job is to create a solution that makes calculating ages super easy.
 Here's what you need to do:
 
-**GET THE DATES:**
+- **GET THE DATES:**
 First, you need to ask Mr. Bhoola for two dates: The person's Birthday: This is the date they were born. And Today's Date: You'll need to know what day it is right now.
 
-**CHECK FOR MISTAKES: (THE VALIDATION STEP)**
+- **CHECK FOR MISTAKES: (THE VALIDATION STEP)**
 Before you can calculate the age, you need to make sure the dates Mr. Bhoola gives you are correct. Think about these things: Are there too many days in the month? For example, April only has 30 days, so you can't have a date like April 31st. Is it a leap year? February has 29 days on a leap year, and 28 days otherwise!
 Now, you can calculate the exact age.
 *Bonus for also including leap year in the calculation.*
 
 ## LOGIC
 
-1:jan = 31 days
-2:feb = 28/19 days
-3:mar = 31 days
-4:apr = 30 days
-5:may = 31 days
-6:jun = 30 days
-7:jul = 31 days
-8:aug = 31 days
-9:sep = 30 days
-10:oct = 31 days
-11:nov = 30 days
-12:dec = 31 days
+- 1: jan = 31 days
+- 2: feb = 28/29 days
+- 3: mar = 31 days
+- 4: apr = 30 days
+- 5: may = 31 days
+- 6: jun = 30 days
+- 7: jul = 31 days
+- 8: aug = 31 days
+- 9: sep = 30 days
+- 10: oct = 31 days
+- 11: nov = 30 days
+- 12: dec = 31 days
 
 ## pseudocode
 
