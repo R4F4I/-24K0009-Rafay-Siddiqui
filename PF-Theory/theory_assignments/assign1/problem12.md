@@ -30,15 +30,23 @@ m=3
 jug1 = n  // space available
 jug2 = m  // space available
 
-//jug2 = 0 full
+while jug != n-4: // all the operations below will be performed iteratively until the space in jug1 is not n-4 where n = space in jug1 i.e 5
+    while jug1>0:
+        jug1 = jug1 - jug 2 
+        // jug1 = 5-3 =2 -> space available in jug1
 
-jug1 = jug1 - jug 2 
-// jug1 = 5-3 =2 -> space available in jug1
+    // jug1 = 2-3 = -1 -> space available in jug1 as in overflow
 
-jug1 = jug1 - jug 2 
-// jug1 = 2-3 = -1 -> space available in jug1 as in overflow
-// if jug1 < 0: 
+    if jug1 < 0: 
+        jug2=jug1+jug2 // 2=-1+3
+
+    jug1 = n // jug1 is now emptied, space is now back to default
 
 
 ```
 
+## IPO Chart
+
+|input|process|output|
+|-|-|-|
+|jug1 space, jug2 space, amount desired | perform an iterative process of filling the larger jug with smaller jug and and its contents until the condition is met| the desired amount of water|
