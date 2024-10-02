@@ -27,6 +27,7 @@ this a random picture
 - [Tasks: sept 5, 2024](PF-LAB/homework-tasks/5-9-2024/assignment.md)
 - [LAB04](PF-LAB/homework-tasks/LAB04/)
 - [LAB05](PF-LAB/homework-tasks/LAB05/)
+- [LAB06](PF-LAB/homework-tasks/LAB06/)
 
 ## PF-Theory
 
