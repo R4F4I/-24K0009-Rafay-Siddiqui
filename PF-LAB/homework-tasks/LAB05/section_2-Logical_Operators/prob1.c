@@ -16,7 +16,7 @@ int main (){
 
     // process
     if (num % 3 == 0 && num % 5 == 0){
-        printf("num is divisble by both");
+        printf("num is divisible by both");
     }
 
     return 0;
