@@ -28,9 +28,9 @@ int main (){
 
 
     // processing
-    // binary representation of a decimal can be deduced from the 2^n take make it up, as they are ones in binary
+    // binary representation of a decimal can be deduced from the 2^n that take to make it up, as they are ones in binary
     // 350 = 256 + 64 + 16 + 8 + 4 + 2 => 6 
-    // to get to the closest yet smallest power of 2 use a loop
+    // to get to the closest yet smallest power of 2, use a loop
     
 
     while (temp < num){

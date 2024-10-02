@@ -7,6 +7,8 @@
 
 */
 
+// this is only a side note, the actual one is prob2.c
+
 //header
 #include <stdio.h>
 

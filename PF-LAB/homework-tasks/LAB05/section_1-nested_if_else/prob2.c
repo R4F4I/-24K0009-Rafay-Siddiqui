@@ -1,5 +1,6 @@
 /*
-? Write a program that categorizes a person's age into different life stages: Child, Teenager, Adult, and Senior, using nested if-else statements.
+? | Create a program that determines if a number is positive, negative, or zero, and if it's positive,
+? | checks if it's an even or odd number.
 
 * Name:         Rafay Siddiqui
 * roll number:  24k-0009

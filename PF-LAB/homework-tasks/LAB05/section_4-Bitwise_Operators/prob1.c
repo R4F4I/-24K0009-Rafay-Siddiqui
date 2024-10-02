@@ -24,6 +24,7 @@ int main (){
 
 
     // processing
+    // three times xor operations between the two gets them to swap
     num1 = num1 ^ num2;
     num2 = num1 ^ num2;
     num1 = num1 ^ num2;

@@ -7,6 +7,13 @@
 
 */
 
+/*
+age < 13 => child
+13 < age < 20 => teen
+20 < age < 60 => adult
+60 < age => senior
+*/
+
 #include <stdio.h>
 
 int main()
