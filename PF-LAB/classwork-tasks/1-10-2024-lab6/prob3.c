@@ -21,7 +21,7 @@ int main (){
     //declaration
     int pin;
     int i=2;
-    int CorrectPin = 5678;
+    const CorrectPin = 5678;
 
     // input
     printf("enter your PIN: ");
