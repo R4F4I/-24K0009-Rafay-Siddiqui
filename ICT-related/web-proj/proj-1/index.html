@@ -3,13 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document 1</title>
-
-    <h1>
-        This is a header
-    </h1>
+    <title>My Interesting Webpage</title>
+    
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        /* Internal CSS */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+        main {
+            padding: 20px;
+        }
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #333;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
-    
+    <header>
+        <h1>Welcome to My Webpage</h1>
+    </header>
+
+    <main>
+        <h2 style="color: #007BFF;">Main Content Area</h2>
+        <p>This is a simple webpage demonstrating the use of internal CSS, external CSS, and inline styles.</p>
+        <p style="font-weight: bold; font-size: 1.2em;">Enjoy exploring the different styles!</p>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 My Webpage. All rights reserved.</p>
+    </footer>
 </body>
 </html>
