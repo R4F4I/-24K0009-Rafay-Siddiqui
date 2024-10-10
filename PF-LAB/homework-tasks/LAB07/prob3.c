@@ -20,47 +20,93 @@ Write a C program that:
 #include <stdio.h>
 #include <stdbool.h>
 
+
+
+
+
+
+
 int main() {
     char name[100];
-    bool nameCheck = false;
+    
     char email[100];
     bool emailCheck = false;
+    
     char phoneNum[100];
-    bool phoneNumCheck = false;
+    bool phoneNumCheck = true;
 
     int i;
 
     // Scanset example: accepts only alphabetic
     //scanf("%[A-Za-z]", str);
-    
+
+// -------- START   NAME  VALIDATION
+    // no special checking present in name an automatic filter will be applied on invalid names
+
     printf("Enter a Name: ");
     scanf("%[A-Za-z ]", name);
+    getchar();
     
-    
-    printf("You entered: %s\n", name);
 
+// -------- END   NAME  VALIDATION
+// -------- START EMAIL VALIDATION
 
     printf("Enter a email: ");
-    scanf("%[A-Za-z0-9 ._-]", email);
-    
-    
-    printf("You entered: %s\n", email);
-    
+    scanf("%[A-Za-z0-9 ._-@]", email);
+    getchar();
+
+
+    // a '@' is a must, but only once, in this for loop
     for (i = 0; i < 100; i++)
     {
-        if (email[i]=='@')
+        if (emailCheck == false && email[i]=='@')
         {
-            emailCheck = true;
+            emailCheck =!emailCheck;
+            i++; // quickly skip this index to prevent the if statement below from being activated
+        }
+        if (emailCheck == true && email[i] == '@'){
+            emailCheck =!emailCheck;
+            break;
+            // 2nd if permanently makes the check false if another '@' is found
         }
     }
-    printf("%d",emailCheck);
+    
+    
 
-    printf("Enter a email: ");
-    scanf("%[A-Za-z0-9 ._-]", email);
+
+// -------- END   EMAIL      VALIDATION
+// -------- START PHONE NO.  VALIDATION
+
+    printf("Enter a phoneNum: ");
+    scanf("%[0-9._-+]", phoneNum);
+    getchar();
     
     
-    printf("You entered: %s\n", email);
+    // loop starts from 1 to prevent the '+' in the beginning from being counted as false
+    for (i = 1; i < 100; i++)
+    {
+        if (phoneNum[i] == '+')
+        {
+            phoneNumCheck = false;
+            break;
+        }
+    }
+
+    printf("You entered: %s\n", name);
+
+    printf("You entered: %s", email);
+    (emailCheck == false) 
+        ? printf(" FAILED\n") 
+        : printf(" SUCCESSFUL\n");
     
+
+    printf("You entered: %s", phoneNum);
+    (phoneNumCheck == false) 
+        ? printf(" FAILED\n") 
+        : printf(" SUCCESSFUL\n");
+    
+
+// -------- END PHONE NO.  VALIDATION    
 
     return 0;
 }
