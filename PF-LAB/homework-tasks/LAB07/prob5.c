@@ -11,13 +11,13 @@ Example Output: Average temperature: 24.0°C, Extreme temperatures on day 3 and 
 
  int main() {
     int arr[7]= {25,30,-2,35,42,28,10};
-    int min= 9999, max = 0; 
+    int min = 6, max = 0; 
     float avg = 0.0;
     int i;
     for (i = 0;i<7;i++){
         if (arr[i]>arr[max]){
             max = i;
-            printf("max: %d\n",arr[i]);
+            
         }
         if (arr[i]<arr[min]){
             min = i;
