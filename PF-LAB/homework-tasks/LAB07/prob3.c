@@ -123,7 +123,7 @@ int main() {
 
     // OUTPUTS
 
-    printf("You entered: %s\n", name);
+    printf("\n\n\nYou entered: %s\n", name);
 
     printf("You entered: %s", email);
     (emailCheck == false) 
