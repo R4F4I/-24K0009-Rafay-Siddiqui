@@ -20,6 +20,7 @@ this a random picture
 
 - [classwork: sept 10, 2024](PF-LAB/classwork-tasks/10-09-2024/lab04/)
 - [classwork: oct 01, 2024](PF-LAB/classwork-tasks/1-10-2024-lab6/)
+- [classwork: oct 08, 2024](PF-LAB/classwork-tasks/8-10-24/class_tasks/)
 
 ### LAB homework tasks
 
@@ -28,6 +29,8 @@ this a random picture
 - [LAB04](PF-LAB/homework-tasks/LAB04/)
 - [LAB05](PF-LAB/homework-tasks/LAB05/)
 - [LAB06](PF-LAB/homework-tasks/LAB06/)
+- [LAB07](PF-LAB/homework-tasks/LAB07/)
+
 
 ## PF-Theory
 
