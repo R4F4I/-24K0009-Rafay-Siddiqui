@@ -40,21 +40,52 @@ int main() {
     // Scanset example: accepts only alphabetic
     //scanf("%[A-Za-z]", str);
 
-// -------- START   NAME  VALIDATION
-    // no special checking present in name an automatic filter will be applied on invalid names
+    // INPUTS
+
+    // -- NAME
+
+    // -x-x-x-x-x-x-x-x-x
 
     printf("Enter a Name: ");
     scanf("%[A-Za-z ]", name);
     getchar();
-    
 
-// -------- END   NAME  VALIDATION
-// -------- START EMAIL VALIDATION
+    // -x-x-x-x-x-x-x-x-x
+
+    // -- EMAIL
+
+    // -x-x-x-x-x-x-x-x-x
 
     printf("Enter a email: ");
     scanf("%[A-Za-z0-9 ._-@]", email);
     getchar();
 
+    // -x-x-x-x-x-x-x-x-x
+
+    // -- PHONE NO.
+
+    // -x-x-x-x-x-x-x-x-x
+
+    printf("Enter a phoneNum: ");
+    scanf("%[0-9._-+]", phoneNum);
+    getchar();
+
+    // -x-x-x-x-x-x-x-x-x
+
+    // VALIDATIONS
+
+    // -- NAME
+
+    // -x-x-x-x-x-x-x-x-x
+
+    // no special checking present in name an automatic filter will be applied on invalid names
+
+    // -x-x-x-x-x-x-x-x-x
+
+
+    // -- EMAIL 
+
+    // -x-x-x-x-x-x-x-x-x
 
     // a '@' is a must, but only once, in this for loop
     for (i = 0; i < 100; i++)
@@ -71,16 +102,12 @@ int main() {
         }
     }
     
+    // -x-x-x-x-x-x-x-x-x
     
 
+    // -- PHONE NO.
 
-// -------- END   EMAIL      VALIDATION
-// -------- START PHONE NO.  VALIDATION
-
-    printf("Enter a phoneNum: ");
-    scanf("%[0-9._-+]", phoneNum);
-    getchar();
-    
+    // -x-x-x-x-x-x-x-x-x
     
     // loop starts from 1 to prevent the '+' in the beginning from being counted as false
     for (i = 1; i < 100; i++)
@@ -91,6 +118,10 @@ int main() {
             break;
         }
     }
+
+    // -x-x-x-x-x-x-x-x-x
+
+    // OUTPUTS
 
     printf("You entered: %s\n", name);
 
@@ -106,7 +137,7 @@ int main() {
         : printf(" SUCCESSFUL\n");
     
 
-// -------- END PHONE NO.  VALIDATION    
+
 
     return 0;
 }
