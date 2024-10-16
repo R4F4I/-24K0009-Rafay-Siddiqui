@@ -65,27 +65,7 @@ Class section:  BAI-1A
     */
 
 
-   /*
-   4. GROCERY CALCULATOR
-
-        input budget
-        input item1, item2, item3
-        input item1_price, item2_price, item3_price
-        input item1_amt, item2_amt, item3_amt
-
-        total_cost = item1_price*item1_amt + item2_price*item2_amt + item3_price*item3_amt
-
-        change = budget - total_cost
-
-
-        print "total cost is: ", total_cost
-        if change<0:
-            print "shopping price exceeds budget"
-
-        else:
-            print "amount remaining is: ", change
-
-   */
+   
 
   /*
   5. IRRIGATION
@@ -442,6 +422,31 @@ void legal_marriage(){
 
 
 // TASK 4
+
+void grocery_calc(){
+    /*
+   4. GROCERY CALCULATOR
+
+        input budget
+        input item1, item2, item3
+        input item1_price, item2_price, item3_price
+        input item1_amt, item2_amt, item3_amt
+
+        total_cost = item1_price*item1_amt + item2_price*item2_amt + item3_price*item3_amt
+
+        change = budget - total_cost
+
+
+        print "total cost is: ", total_cost
+        if change<0:
+            print "shopping price exceeds budget"
+
+        else:
+            print "amount remaining is: ", change
+
+   */
+}
+
 // TASK 5
 // TASK 6
 // TASK 7
@@ -485,7 +490,7 @@ int main(){
         legal_marriage();
         break;
     case 4:
-        // grocery_calc();
+        grocery_calc();
         break;
     case 5:
         // irrigation_manager();
