@@ -16,10 +16,61 @@ Class section:  BAI-1A
 
 #include <stdio.h>
 
+// simple function written to simply taking inputs
+int input_num(char string[]){
+
+	int value;
+
+	printf("\n%s: ",string);
+	scanf("%d",&value);
+	
+	return value;
+}
+
+char input_char(char string[]){
+
+	int value;
+
+	printf("\n%s",string);
+	scanf("%d",&value);
+	
+	return value;
+}
+
+void display_header(){
+    printf("\n\n\n");
+    printf("'||    ||'                  .                          ..|'''.|\n");
+    printf(" |||  |||   ....    ....  .||.    ....  ... ..       .|'     '\n");
+    printf(" |'|..'||  '' .||  ||. '   ||   .|...||  ||' ''      ||\n");
+    printf(" | '|' ||  .|' ||  . '|..  ||   ||       ||          '|.      .\n");
+    printf(".|. | .||. '|..'|' |'..|'  '|.'  '|...' .||.          ''|....'\n");
+
+    printf("\n\n\n");
+    printf("By:             Rafay Siddiqui\n");
+    printf("Roll No:        24K 0009\n");
+    printf("Class section:  BAI-1A\n");
+
+    printf("\n\n\n");
+}
+void display_main_options(){
+    printf("1.  kilometers per sec to mph\n");
+    printf("2.  even to odd\n");
+    printf("3.  Legal marriage in Pakistan\n");
+    printf("4.  Grocery Calculator\n");
+    printf("5.  Irrigation manager\n");
+    printf("6.  Amusement Park eligibility checker\n");
+    printf("7.  Binary code to digit in elevator\n");
+    printf("8.  Sum of All digits\n");
+    printf("9.  Exact Age\n");
+    printf("10. Replace all 90s with 9\n");
+    printf("11. Co prime Detector\n");
+    printf("12. Die hard jug problem\n");
+    printf("0.  Exit\n");
+}
 
 int main(){
 
-
+    int choice;
 
 
    // OUTPUTS
@@ -324,7 +375,68 @@ int main(){
         jug1 = n // jug1 is now emptied, space is now back to default
  */
 
-    printf("1.a");
+
+    // UI
+    
+    // display main header
+    display_header();
+    // show options
+    display_main_options();
+    // take user input for choice
+    choice = input_num("Please one of the above options");
+    // perform on choice
+    //perform_on_choice(choice);
+  
+    
+
+    switch (choice)
+    {
+    case 0:
+        printf("\nThank You for your visit!");
+        break;
+    case 1:
+        //speed_converter();
+        break;
+    case 2:
+        /* code */
+        break;
+    case 3:
+        /* code */
+        break;
+    case 4:
+        /* code */
+        break;
+    case 5:
+        /* code */
+        break;
+    case 6:
+        /* code */
+        break;
+    case 7:
+        /* code */
+        break;
+    case 8:
+        /* code */
+        break;
+    case 9:
+        /* code */
+        break;
+    case 10:
+        /* code */
+        break;
+    case 11:
+        /* code */
+        break;
+    case 12:
+        /* code */
+        break;
+    case 13:
+        /* code */
+        break;
+    
+    default:
+        break;
+    }
 
     return 0;
 }
