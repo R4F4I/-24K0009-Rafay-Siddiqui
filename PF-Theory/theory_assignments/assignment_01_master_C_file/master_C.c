@@ -318,29 +318,25 @@ Class section:  BAI-1A
 
         jug1 = n // jug1 is now emptied, space is now back to default
  */
-*/
 
 #include <stdio.h>
 
 // simple function written to simply taking inputs
 int input_num(char string[]){
-
 	int value;
-
 	printf("\n%s: ",string);
-	scanf("%d",&value);
-	
+	scanf("%d",&value);	
 	return value;
 }
 
 char input_char(char string[]){
-
-	int value;
-
+	char value;
 	printf("\n%s",string);
-	scanf("%d",&value);
-	
+	scanf("%c",&value);
 	return value;
+}
+void print_border(char string[]){
+    printf("\n\n\n<=====  %s  =====>\n\n\n",string);
 }
 
 void display_header(){
@@ -377,15 +373,17 @@ void display_main_options(){
 // TASK 1
 float kmps_to_mph(int kmps){return kmps*0.62*3600;}
 void speed_converter(){
+    print_border("KMPS TO MPH CONVERTOR");
     float speed_1, speed_2;
     speed_1 = input_num("Enter your speed in km per second");
     speed_2 = kmps_to_mph(speed_1);
-    printf("%.2f",speed_2);
+    printf("\n\n%.2f mph",speed_2);
 }
 
 // TASK 2
 
 void even_odd(){
+    print_border("EVEN OR ODD");
     int num=0;
     while (num<1){num = input_num("Enter a positive Number");}
     if (num%2==0){
@@ -395,6 +393,54 @@ void even_odd(){
 }
 
 // TASK 3
+
+void legal_marriage(){
+    print_border("LEGAL MARRIAGE");
+    char province[10], gender;
+    int age;
+    age = input_num("Enter age");
+    gender = input_char("Enter gender (M / F): ");
+    getchar();
+    printf("\nEnter province: ");
+    scanf("%s",&province);
+    
+    /*
+    if (province != "sindh"){
+        if (gender == "F"){
+            if (age <16){
+                printf("\nmarriage not allowed")
+            }
+            else {
+            printf("\nmarriage allowed")
+            }
+        }
+        else if (gender == "M"){
+            if (age<18)
+                {printf("\nmarriage not allowed")}
+            else
+                {printf("\nmarriage allowed")}
+        }
+            
+    }
+    else if (age<18){printf("\nmarriage not allowed")}
+    */
+
+    printf("\nmarriage %s", 
+        (province != "sindh") 
+        ? (
+            (gender == 'F' && age < 16) || 
+            (gender == 'M' && age < 18) 
+                ? "not allowed" 
+                : "allowed") 
+        : (
+            age < 18 
+            ? "not allowed" 
+            : "allowed")
+    );
+}
+
+
+
 // TASK 4
 // TASK 5
 // TASK 6
@@ -436,7 +482,7 @@ int main(){
         even_odd();
         break;
     case 3:
-        // legal_marriage();
+        legal_marriage();
         break;
     case 4:
         // grocery_calc();
