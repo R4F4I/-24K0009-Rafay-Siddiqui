@@ -14,63 +14,7 @@ Class section:  BAI-1A
 
 */
 
-#include <stdio.h>
-
-// simple function written to simply taking inputs
-int input_num(char string[]){
-
-	int value;
-
-	printf("\n%s: ",string);
-	scanf("%d",&value);
-	
-	return value;
-}
-
-char input_char(char string[]){
-
-	int value;
-
-	printf("\n%s",string);
-	scanf("%d",&value);
-	
-	return value;
-}
-
-void display_header(){
-    printf("\n\n\n");
-    printf("'||    ||'                  .                          ..|'''.|\n");
-    printf(" |||  |||   ....    ....  .||.    ....  ... ..       .|'     '\n");
-    printf(" |'|..'||  '' .||  ||. '   ||   .|...||  ||' ''      ||\n");
-    printf(" | '|' ||  .|' ||  . '|..  ||   ||       ||          '|.      .\n");
-    printf(".|. | .||. '|..'|' |'..|'  '|.'  '|...' .||.          ''|....'\n");
-
-    printf("\n\n\n");
-    printf("By:             Rafay Siddiqui\n");
-    printf("Roll No:        24K 0009\n");
-    printf("Class section:  BAI-1A\n");
-
-    printf("\n\n\n");
-}
-void display_main_options(){
-    printf("1.  kilometers per sec to mph\n");
-    printf("2.  even to odd\n");
-    printf("3.  Legal marriage in Pakistan\n");
-    printf("4.  Grocery Calculator\n");
-    printf("5.  Irrigation manager\n");
-    printf("6.  Amusement Park eligibility checker\n");
-    printf("7.  Binary code to digit in elevator\n");
-    printf("8.  Sum of All digits\n");
-    printf("9.  Exact Age\n");
-    printf("10. Replace all 90s with 9\n");
-    printf("11. Co prime Detector\n");
-    printf("12. Die hard jug problem\n");
-    printf("0.  Exit\n");
-}
-
-int main(){
-
-    int choice;
+/*
 
 
    // OUTPUTS
@@ -374,6 +318,97 @@ int main(){
 
         jug1 = n // jug1 is now emptied, space is now back to default
  */
+*/
+
+#include <stdio.h>
+
+// simple function written to simply taking inputs
+int input_num(char string[]){
+
+	int value;
+
+	printf("\n%s: ",string);
+	scanf("%d",&value);
+	
+	return value;
+}
+
+char input_char(char string[]){
+
+	int value;
+
+	printf("\n%s",string);
+	scanf("%d",&value);
+	
+	return value;
+}
+
+void display_header(){
+    printf("\n\n\n");
+    printf("'||    ||'                  .                          ..|'''.|\n");
+    printf(" |||  |||   ....    ....  .||.    ....  ... ..       .|'     '\n");
+    printf(" |'|..'||  '' .||  ||. '   ||   .|...||  ||' ''      ||\n");
+    printf(" | '|' ||  .|' ||  . '|..  ||   ||       ||          '|.      .\n");
+    printf(".|. | .||. '|..'|' |'..|'  '|.'  '|...' .||.          ''|....'\n");
+
+    printf("\n\n\n");
+    printf("By:             Rafay Siddiqui\n");
+    printf("Roll No:        24K 0009\n");
+    printf("Class section:  BAI-1A\n");
+
+    printf("\n\n\n");
+}
+void display_main_options(){
+    printf("1.  kilometers per sec to mph\n");
+    printf("2.  even to odd\n");
+    printf("3.  Legal marriage in Pakistan\n");
+    printf("4.  Grocery Calculator\n");
+    printf("5.  Irrigation manager\n");
+    printf("6.  Amusement Park eligibility checker\n");
+    printf("7.  Binary code to digit in elevator\n");
+    printf("8.  Sum of All digits\n");
+    printf("9.  Exact Age\n");
+    printf("10. Replace all 90s with 9\n");
+    printf("11. Co prime Detector\n");
+    printf("12. Die hard jug problem\n");
+    printf("0.  Exit\n");
+}
+
+// TASK 1
+float kmps_to_mph(int kmps){return kmps*0.62*3600;}
+void speed_converter(){
+    float speed_1, speed_2;
+    speed_1 = input_num("Enter your speed in km per second");
+    speed_2 = kmps_to_mph(speed_1);
+    printf("%.2f",speed_2);
+}
+
+// TASK 2
+
+void even_odd(){
+    int num=0;
+    while (num<1){num = input_num("Enter a positive Number");}
+    if (num%2==0){
+        printf("\neven");}
+    else{
+        printf("\nodd");}
+}
+
+// TASK 3
+// TASK 4
+// TASK 5
+// TASK 6
+// TASK 7
+// TASK 8
+// TASK 9
+// TASK 10
+// TASK 11
+// TASK 12
+
+int main(){
+
+    int choice;
+
 
 
     // UI
@@ -395,40 +430,40 @@ int main(){
         printf("\nThank You for your visit!");
         break;
     case 1:
-        //speed_converter();
+        speed_converter();
         break;
     case 2:
-        /* code */
+        even_odd();
         break;
     case 3:
-        /* code */
+        // legal_marriage();
         break;
     case 4:
-        /* code */
+        // grocery_calc();
         break;
     case 5:
-        /* code */
+        // irrigation_manager();
         break;
     case 6:
-        /* code */
+        // park_eligibility();
         break;
     case 7:
-        /* code */
+        // elevator();
         break;
     case 8:
-        /* code */
+        // digit_sum();
         break;
     case 9:
-        /* code */
+        // exact_age();
         break;
     case 10:
-        /* code */
+        // ninety_to_nine();
         break;
     case 11:
-        /* code */
+        // co_prime_detector();
         break;
     case 12:
-        /* code */
+        // die_hard_jug();
         break;
     case 13:
         /* code */
