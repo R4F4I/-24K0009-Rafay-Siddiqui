@@ -537,6 +537,126 @@ void park_eligibility(){
  
 }
 // TASK 7
+
+void print_numbers(){
+    printf(" _   \n");
+    printf("  |  \n");
+    printf("  +   = 110000\n");
+    printf("  |  \n");
+    printf(" --- \n");
+
+    printf("\n\n\n");
+
+    printf("  ___ \n");
+    printf("     |\n");
+    printf("  -+-  = 1101101\n");
+    printf(" |    \n");
+    printf("  --- \n");
+    printf("\n\n\n");
+    printf(" ___ \n");
+    printf("    |\n");
+    printf(" -+-  = 1111001\n");
+    printf("    |\n");
+    printf(" --- \n");
+
+    printf("\n\n\n");
+    
+    printf(" | |  \n");
+    printf("  -+- = 110011\n");
+    printf("   |  \n");
+    
+    printf("\n\n\n");
+
+    printf("  ___ \n");
+    printf(" |    \n");
+    printf("  -+- = 1011011\n");
+    printf("     |\n");
+    printf("  --- \n");
+
+    printf("\n\n\n");
+
+    printf("  ___ \n");
+    printf(" |    \n");
+    printf(" |-+- = 1011111\n");
+    printf(" |   |\n");
+    printf("  --- \n");
+
+    printf("\n\n\n");
+
+    printf("  ___ \n");
+    printf("    / \n");
+    printf("   +  = 1110000\n");
+    printf("  /   \n");
+
+    printf("\n\n\n");
+
+    printf("  ___ \n");
+    printf(" |   |\n");
+    printf("  -+- = 1111111\n");
+    printf(" |   |\n");
+    printf("  --- \n");
+
+    printf("\n\n\n");
+
+    printf("  ___ \n");
+    printf(" |   |\n");
+    printf("  -+-| = 1110011\n");
+    printf("     |\n");
+    printf("  --- \n");
+
+    printf("\n\n\n");
+
+    printf("  ___  \n");
+    printf(" |  /| \n");
+    printf(" | + | =1111110\n");
+    printf(" |/  | \n");
+    printf("  ---  \n");
+}
+
+void elevator(){
+    print_border("elevator");
+    print_numbers();
+    int code = input_num("Enter your code");
+
+
+
+    switch (code){
+        case 1111110:
+            printf("0");
+            break;
+        case 110000:
+            printf("1");
+            break;
+        case 1101101:
+            printf("2");
+            break;
+        case 1111001:
+            printf("3");
+            break;
+        case 110011:
+            printf("4");
+            break;
+        case 1011011:
+            printf("5");
+            break;
+        case 1011111:
+            printf("6");
+            break;
+        case 1110000:
+            printf("7");
+            break;
+        case 1111111:
+            printf("8");
+            break;
+        case 1110011:
+            printf("9");
+            break;
+        default:
+            printf("error");
+            break;
+        
+    }
+}
 // TASK 8
 // TASK 9
 // TASK 10
@@ -586,7 +706,7 @@ int main(){
         park_eligibility();
         break;
     case 7:
-        // elevator();
+        elevator();
         break;
     case 8:
         // digit_sum();
