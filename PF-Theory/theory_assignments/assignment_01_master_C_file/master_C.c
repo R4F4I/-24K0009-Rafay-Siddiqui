@@ -492,6 +492,50 @@ void irrigation_manager(){
 }
 
 // TASK 6
+void park_eligibility(){
+    /*
+ 6. AMUSEMENT PARK ELIGIBILITY
+    */
+    print_border("AMUSEMENT PARK ELIGIBILITY");
+    int ride, height, age;
+    ride = input_num("1: The Dragon Roller Coaster\n2: The Sky Swing\n3: The Carousel\n Enter your preferred ride");
+    height = input_num("Enter height");
+    age = input_num("Enter age");
+    
+
+    switch(ride){
+
+        case 1:
+            if (height >=48 && age>=10){
+                printf("Enjoy Your Ride!");
+            }
+            else{
+                printf("Sorry, you do not meet the criteria for The Dragon Roller Coaster");
+            }
+            break;
+        case 2:
+            if (height >=54){
+                printf("Enjoy Your Ride!");
+            }
+            else{
+                printf("Sorry, you do not meet the criteria for The Sky Swing");
+            }
+            break;
+        case 3:
+            if (age>=5){
+                printf("Enjoy Your Ride!");
+            }
+            else{
+                printf("Sorry, you do not meet the criteria for The Carousel");
+            }
+            break;
+        default:
+            printf("incorrect input");
+            break;
+    }
+
+ 
+}
 // TASK 7
 // TASK 8
 // TASK 9
@@ -539,7 +583,7 @@ int main(){
         irrigation_manager();
         break;
     case 6:
-        // park_eligibility();
+        park_eligibility();
         break;
     case 7:
         // elevator();
