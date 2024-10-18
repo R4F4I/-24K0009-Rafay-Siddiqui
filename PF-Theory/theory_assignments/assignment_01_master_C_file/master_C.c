@@ -304,7 +304,7 @@ Class section:  BAI-1A
 // simple function written to simply taking inputs
 int input_num(char string[]){
 	int value;
-	printf("\n%s: ",string);
+	printf("%s: ",string);
 	scanf("%d",&value);	
 	return value;
 }
@@ -355,7 +355,7 @@ float kmps_to_mph(int kmps){return kmps*0.62*3600;}
 void speed_converter(){
     print_border("KMPS TO MPH CONVERTOR");
     float speed_1, speed_2;
-    speed_1 = input_num("Enter your speed in km per second");
+    speed_1 = input_num("\nEnter your speed in km per second");
     speed_2 = kmps_to_mph(speed_1);
     printf("\n\n%.2f mph",speed_2);
 }
@@ -365,7 +365,7 @@ void speed_converter(){
 void even_odd(){
     print_border("EVEN OR ODD");
     int num=0;
-    while (num<1){num = input_num("Enter a positive Number");}
+    while (num<1){num = input_num("\nEnter a positive Number");}
     if (num%2==0){
         printf("\neven");}
     else{
@@ -378,7 +378,7 @@ void legal_marriage(){
     print_border("LEGAL MARRIAGE");
     char province[10], gender;
     int age;
-    age = input_num("Enter age");
+    age = input_num("\nEnter age");
     gender = input_char("Enter gender (M / F): ");
     getchar();
     printf("\nEnter province: ");
@@ -426,25 +426,34 @@ void legal_marriage(){
 void grocery_calc(){
     /*
    4. GROCERY CALCULATOR
+     */
+        print_border("GROCERY CALCULATOR");
+        int budget, total_cost,change,i=0,items_price[3],items_count[3];
+        char items[10][3];
+        
+        printf("===BUDGET===\n");
+        budget = input_num("\nEnter budget");
+        printf("===ITEMS===\n");
+        while (i<3)
+        {
+            printf("Enter the price for item number %d",i+1);
+            items_price[i] = input_num("");
 
-        input budget
-        input item1, item2, item3
-        input item1_price, item2_price, item3_price
-        input item1_amt, item2_amt, item3_amt
+            printf("Enter the quantity for item number %d",i+1);
+            items_count[i] = input_num("");
 
-        total_cost = item1_price*item1_amt + item2_price*item2_amt + item3_price*item3_amt
+            total_cost += items_price[i]*items_count[i];
+            i++;
+        }
 
-        change = budget - total_cost
+        change = budget - total_cost;
 
-
-        print "total cost is: ", total_cost
-        if change<0:
-            print "shopping price exceeds budget"
-
-        else:
-            print "amount remaining is: ", change
-
-   */
+        printf( "total cost is: %d", total_cost);
+        if (change<0){
+            printf ("shopping price exceeds budget");
+        }else{
+            printf ("\namount remaining is: %d", change);
+        };
 }
 
 // TASK 5
@@ -469,7 +478,7 @@ int main(){
     // show options
     display_main_options();
     // take user input for choice
-    choice = input_num("Please one of the above options");
+    choice = input_num("\nPlease one of the above options");
     // perform on choice
     //perform_on_choice(choice);
   
