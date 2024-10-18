@@ -457,6 +457,40 @@ void grocery_calc(){
 }
 
 // TASK 5
+
+void perform_irrigation(){
+    printf("\n\n\nperforming irrigation...\n\n\n");
+} // perform_irrigation
+
+void irrigation_manager(){
+    int crop=0,soil_moisture, rainfall_time;
+
+    print_border("IRRIGATION");
+
+    print_border("CROP");
+    // *INPUTS
+    // crop must be on of the options available
+    while (crop>3 || crop<1){crop = input_num("\n(1 for wheat)\n(2 for corn)\n(3 for rice)\nEnter crop");}
+    // soil_moisture INPUT
+    soil_moisture = input_num("Enter soil moisture");
+    // rainfall_time INPUTS
+    rainfall_time = input_num("Enter hours since last rainfall");
+
+    switch(crop){
+        case 1:
+            if (soil_moisture < 30 && rainfall_time>24){perform_irrigation();}
+            break;
+        case 2:
+            if (soil_moisture < 40){perform_irrigation();}
+            break;
+        case 3:
+            if (soil_moisture < 25 && rainfall_time>24){perform_irrigation();}
+            break;
+        default:
+            break;
+    }
+}
+
 // TASK 6
 // TASK 7
 // TASK 8
@@ -502,7 +536,7 @@ int main(){
         grocery_calc();
         break;
     case 5:
-        // irrigation_manager();
+        irrigation_manager();
         break;
     case 6:
         // park_eligibility();
