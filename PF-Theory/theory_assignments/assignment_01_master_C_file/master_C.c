@@ -658,6 +658,20 @@ void elevator(){
     }
 }
 // TASK 8
+
+void digit_sum(){
+    print_border("Digit Sum");
+    int num,digit=0,res=0;
+    num = input_num("Enter num");
+
+    while (num != 0){
+        digit = num % 10;
+        res += digit;
+        num /= 10;
+    }
+    printf("result is %d",res);
+}
+
 // TASK 9
 // TASK 10
 // TASK 11
@@ -709,7 +723,7 @@ int main(){
         elevator();
         break;
     case 8:
-        // digit_sum();
+        digit_sum();
         break;
     case 9:
         // exact_age();
