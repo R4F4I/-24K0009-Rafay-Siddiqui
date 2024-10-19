@@ -19,30 +19,6 @@ Class section:  BAI-1A
 
    // OUTPUTS
  /*
- 10. FAULTY KEYBOARD
-  ? replace all 90s with 9 (IN A NUMBER)
-  ! LOGIC
-  * use mod 100 to get the last 2 digits of number
-  * if not 90, then mod 10 to get the last digit
-  * collect the last digit in a new_num with increasing powers to ten
-
-    input num
-    new_num = 0
-
-    i=1
-
-    while num != 0:
-        if num % 100 == 90:
-            new_num = new_num + 9*i
-            num = num // 100
-        else:
-            new_num = new_num + (num%10)*i
-            num = num // 10
-        i = i * 10
-
-
- */
- /*
  11. COPRIMES 
 
     input num1
@@ -607,6 +583,7 @@ void days_to_date(int total_days, int result[3]) {
 
 
 void exact_age(){
+    print_border("exact_age");
     int max_date[13]   = {0,31,28,31,30,31,30,31,31,30,31,30,31};
                         // 0  1  2
     int birth_date[3] =   {0, 0, 0}; //[dd,mm,yyyy]
@@ -653,6 +630,7 @@ void exact_age(){
 // TASK 10
 
 void ninety_to_nine(){
+    print_border(" 90 TO 9");
     long num,new_num = 0;
     int i=1;
     num = input_long("\nEnter the faulty number") ;
@@ -671,6 +649,12 @@ void ninety_to_nine(){
 }
 
 // TASK 11
+
+void co_prime_detector(){
+
+
+}
+
 // TASK 12
 
 int main(){
@@ -728,7 +712,7 @@ int main(){
         ninety_to_nine();
         break;
     case 11:
-        // co_prime_detector();
+        co_prime_detector();
         break;
     case 12:
         // die_hard_jug();
