@@ -597,10 +597,17 @@ void exact_age(){
         current_date[1]--; // Borrow one month
     }
 
+     // suppose: birth--date:       21 -      10     -    2008 
+     //         current--date:      19 -      10     -    2024
+     //         then :          (31-2)29 - (0/12-1) = 11 - (16-1) =15
+
+     // suppose: birth--date:       19 -      10     -    2008 
+     //         current--date:      21 -      9     -    2024
+     //         then :              29 - (0/12-1) = 11 - (16-1) =15
+
      // days must be less than their month max
      // todo: fix bug for when birth month and current are same and current date is less than birth date
-    while (current_date[0]>birth_date[0] &&)
-    {
+    while(current_date[0]>birth_date[0]){
         diff[0] %= current_date[1];
         diff[1]++;
     }
@@ -631,7 +638,7 @@ void exact_age(){
     diff[0] = (current_date[0] - birth_date[0])+leap_count;
     diff[1] = current_date[1] - birth_date[1];
 
-   
+
 
     diff[2] = current_date[2] - birth_date[2];
     
