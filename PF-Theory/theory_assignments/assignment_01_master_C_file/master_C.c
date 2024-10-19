@@ -560,13 +560,104 @@ void timestamp_to_date(long timestamp, int date[]) {
     date[0] = days + 1;   // Days are 1-based, so add 1
 }
 
+// ?<--- different implementation--->
+// another method
+
+// current date -> total days since 0/0/0000
+// birth   date -> total days since 0/0/0000
+
+//diff in days  -> current date(in total days)-  birth date(in total days)
+// reconvert the diff in days  into a diff array which will be age
+
+// Function to calculate total days in years up to given year
+int count_days_in_years(int year) {
+    int days = 0;
+    for (int i = 0; i < year; i++) {
+        days += is_leap_year(i) ? 366 : 365;
+    }
+    return days;
+}
+
+// Function to calculate the number of days in the months of a given year
+int count_days_in_months(int month, int year) {
+    int days_in_month[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+
+    // Adjust for leap year
+    if (is_leap_year(year)) {
+        days_in_month[1] = 29;
+    }
+
+    int days = 0;
+    for (int i = 0; i < month; i++) {
+        days += days_in_month[i];
+    }
+    return days;
+}
+
+// Function to convert a date [dd, mm, yyyy] into total days since [0, 0, 0000]
+int date_to_days(int dd, int mm, int yyyy) {
+    int total_days = 0;
+
+    // Add days for the years
+    // Add days for the months in the current year
+    // Add the days in the current month
+    total_days = count_days_in_years(yyyy)+count_days_in_months(mm - 1, yyyy)+dd;
+    return total_days;
+}
+
+// Function to get the number of days in a year
+int days_in_year(int year) {
+    return is_leap_year(year) ? 366 : 365;
+}
+
+// Function to get the number of days in a month of a given year
+int days_in_month(int month, int year) {
+    int days_in_month[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+
+    // Adjust for leap year
+    if (is_leap_year(year)) {
+        days_in_month[1] = 29;
+    }
+
+    return days_in_month[month];
+}
+
+
+void days_to_date(int total_days, int result[3]) {
+    int year = 0;
+
+    // Subtract days year by year
+    while (total_days >= days_in_year(year)) {
+        total_days -= days_in_year(year);
+        year++;
+    }
+
+    int month = 0;
+    // Subtract days month by month
+    while (total_days >= days_in_month(month, year)) {
+        total_days -= days_in_month(month, year);
+        month++;
+    }
+
+    // Now, total_days holds the remaining days in the current month
+    int day = total_days + 1;  // Add 1 because days are 0-indexed
+
+    // Store the result in the result array [dd, mm, yyyy]
+    result[0] = day;
+    result[1] = month;  // Keep the month as 0-based index
+    result[2] = year;
+}
+
+
 void exact_age(){
     int max_date[13]   = {0,31,28,31,30,31,30,31,31,30,31,30,31};
                         // 0  1  2
-    int birth_date[3] =   {0, 0, 0}; 
-    int current_date[3];  // Array to hold the [day, month, year]
+    int birth_date[3] =   {0, 0, 0}; //[dd,mm,yyyy]
+    int current_date[3];  // current day
     int diff[3];
-    int leap_count = 0;
+    int birth_days = 0;
+    int current_days = 0;
+    int diff_in_days = 0;
     time_t timestamp = time(NULL); // Unix timestamp
 
     // !<----INPUTS---->
@@ -577,72 +668,29 @@ void exact_age(){
     while (birth_date[1]>12||birth_date[1]<1){
             birth_date[1] = input_num("Enter a correct birth month");
     }
-    // month adjustment
-    if (current_date[1] < birth_date[1]) {
-        current_date[1] += 12; // Borrow 12 months from the year
-        current_date[2]--; // Borrow one year
-    } else if (current_date[1] == birth_date[1])
-    {
-        
-    }
+
     // birth date input
     // in this comparision the month is chosen first and max_date of that month is checked for validation
     while (birth_date[0]>max_date[birth_date[1]] || birth_date[0]<1){
         birth_date[0] = input_num("Enter a correct birth date");
     }
 
-    // day adjustment
-    if (current_date[0] < birth_date[0]) {
-        current_date[0] += 30; // Assume the previous month has 30 days
-        current_date[1]--; // Borrow one month
-    }
-
-     // suppose: birth--date:       21 -      10     -    2008 
-     //         current--date:      19 -      10     -    2024
-     //         then :          (31-2)29 - (0/12-1) = 11 - (16-1) =15
-
-     // suppose: birth--date:       19 -      10     -    2008 
-     //         current--date:      21 -      9     -    2024
-     //         then :              29 - (0/12-1) = 11 - (16-1) =15
-
-     // days must be less than their month max
-     // todo: fix bug for when birth month and current are same and current date is less than birth date
-    while(current_date[0]>birth_date[0]){
-        diff[0] %= current_date[1];
-        diff[1]++;
-    }
-
+    
     // birth year input
     // in this comparision, the birth year must be less than current month
     while (birth_date[2]>current_date[2] || birth_date[2]<1){
         birth_date[2] = input_num("Enter a correct birth year");
     }
-    
-    
+    // 
+    birth_days = date_to_days(birth_date[0],birth_date[1],birth_date[2]);
+    current_days = date_to_days(current_date[0],current_date[1],current_date[2]);
 
-    
-    // temp year
-    int temp = birth_date[2];
+    // ? THE FINAL ACTUAL DIFFERENCE A.K.A AGE
+    diff_in_days = current_days - birth_days;
 
-    // !leap year 
-    while (temp<=current_date[2])
-    {
-        if (is_leap_year(temp))
-        {
-            leap_count++;
-        }
-        temp++;
-    }
-    
-    // !DIFF
-    diff[0] = (current_date[0] - birth_date[0])+leap_count;
-    diff[1] = current_date[1] - birth_date[1];
-
-
-
-    diff[2] = current_date[2] - birth_date[2];
-    
+    days_to_date(diff_in_days,diff);
     printf("\n%d years %d months and %d days",diff[2],diff[1],diff[0]);
+
 }
 
 // TASK 10
