@@ -1,0 +1,9 @@
+!.gitignore
+.
+.*
+.*/
+secret*
+c_files/
+*.lnk
+hidden_sources/
+**/*.exe
