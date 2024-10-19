@@ -652,7 +652,24 @@ void ninety_to_nine(){
 
 void co_prime_detector(){
 
+    int num1,num2,i=1,lim=0,GCD=0;
+    num1 = input_num("Enter num 1");
+    num2 = input_num("Enter num 2");
 
+    if (num1 > num2){
+        lim = num2;
+    }else{
+        lim = num1;
+    }
+    for (i = 1; i < lim; i++){
+        if (num1 % i == num2 % i){ // 'num1 % i == num2 % i' is also valid logic as this only when happens when both =0, otherwise num1 == num2 (prev. 'num1 % i == 0 && num2 % i == 0' )
+            GCD = i;
+        }
+    }
+    
+    if (GCD > 1){
+        printf("not co primes");
+    }
 }
 
 // TASK 12
