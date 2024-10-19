@@ -14,60 +14,10 @@ Class section:  BAI-1A
 
 */
 
-/*
+
 
 
    // OUTPUTS
- /*
- 9. Exact Age in days, months, and years from DOB (WITH LEAP YEAR)
-
-    ? HELPFUL LOGIC
-    * (we can use arrays to make this easier)
-
-    1:  jan = 31    days
-    2:  feb = 28/29 days
-    3:  mar = 31    days
-    4:  apr = 30    days
-    5:  may = 31    days
-    6:  jun = 30    days
-    7:  jul = 31    days
-    8:  aug = 31    days
-    9:  sep = 30    days
-    10: oct = 31    days
-    11: nov = 30    days
-    12: dec = 31    days
-
-    ! validation for months
-    while month > 12:
-        print "incorrect month"
-        input month
-
-
-    ! validation for months with only 30 days
-    if month == 2 || month == 4 || month == 6 || month == 9 || month == 11:
-        while day>30:
-            print "incorrect day"
-            input day
-    ! validation for all months
-    while day>31:
-            print "incorrect day"
-            input day
-
-    ! Leap year offset
-    is_leap_year = 0
-    while (is_leap_year != today_year){
-        is_leap_year = birth_year + i
-        if (is_leap_year % 400 == 0){
-            offset = offset + 1
-        }
-        else if (is_leap_year % 4 == 0 && is_leap_year % 100 != 0){
-            offset = offset + 1
-        }
-        i = i + 1
-    }
-
-
- */
  /*
  10. FAULTY KEYBOARD
   ? replace all 90s with 9 (IN A NUMBER)
@@ -150,6 +100,13 @@ int input_num(char string[]){
 	int value;
 	printf("%s: ",string);
 	scanf("%d",&value);	
+	return value;
+}
+
+long input_long(char string[]){
+	int value;
+	printf("%s: ",string);
+	scanf("%ld",&value);	
 	return value;
 }
 
@@ -694,6 +651,25 @@ void exact_age(){
 }
 
 // TASK 10
+
+void ninety_to_nine(){
+    long num,new_num = 0;
+    int i=1;
+    num = input_long("\nEnter the faulty number") ;
+
+    while (num != 0){
+        if (num % 100 == 90){
+            new_num = new_num + 9*i;
+            num /= 100;
+        } else {
+            new_num += ((num%10)*i);
+            num /= 10;
+        }
+        i *= 10;
+    }
+    printf("Corrected number: %ld",new_num);
+}
+
 // TASK 11
 // TASK 12
 
@@ -749,7 +725,7 @@ int main(){
         exact_age();
         break;
     case 10:
-        // ninety_to_nine();
+        ninety_to_nine();
         break;
     case 11:
         // co_prime_detector();
