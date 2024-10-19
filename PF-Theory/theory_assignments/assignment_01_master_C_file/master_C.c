@@ -300,6 +300,7 @@ Class section:  BAI-1A
  */
 
 #include <stdio.h>
+#include <time.h>
 
 // simple function written to simply taking inputs
 int input_num(char string[]){
@@ -672,6 +673,128 @@ void digit_sum(){
 }
 
 // TASK 9
+
+// Function to check if a year is a leap year
+int is_leap_year(int year) {
+    return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+}
+
+// Function to calculate the day, month, and year from the number of days since the Unix Epoch
+void timestamp_to_date(long timestamp, int date[]) {
+    int days_in_months[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    int days_in_leap_months[] = {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    long days = timestamp / 86400;  // Convert seconds to days (1 day = 86400 seconds)
+    int year = 1970;
+
+    // Calculate the year
+    while (days >= 365) {
+        if (is_leap_year(year)) {
+            if (days >= 366) {
+                days -= 366;
+                year++;
+            }
+        } else {
+            days -= 365;
+            year++;
+        }
+    }
+
+    // Set the year in the date array
+    date[2] = year;
+
+    // Check if the current year is a leap year
+    int *month_days = is_leap_year(year) ? days_in_leap_months : days_in_months;
+
+    // Calculate the month and day
+    int month = 0;
+    while (days >= month_days[month]) {
+        days -= month_days[month];
+        month++;
+    }
+
+    // Set the month and day in the date array
+    date[1] = month + 1;  // Months are 1-based, so add 1
+    date[0] = days + 1;   // Days are 1-based, so add 1
+}
+
+void exact_age(){
+    int max_date[13]   = {0,31,28,31,30,31,30,31,31,30,31,30,31};
+                        // 0  1  2
+    int birth_date[3] =   {0, 0, 0}; 
+    int current_date[3];  // Array to hold the [day, month, year]
+    int diff[3];
+    int leap_count = 0;
+    time_t timestamp = time(NULL); // Unix timestamp
+
+    // !<----INPUTS---->
+    // current date input
+    timestamp_to_date(timestamp, current_date);
+    
+    // birth month input
+    while (birth_date[1]>12||birth_date[1]<1){
+            birth_date[1] = input_num("Enter a correct birth month");
+    }
+    // month adjustment
+    if (current_date[1] < birth_date[1]) {
+        current_date[1] += 12; // Borrow 12 months from the year
+        current_date[2]--; // Borrow one year
+    } else if (current_date[1] == birth_date[1])
+    {
+        
+    }
+    // birth date input
+    // in this comparision the month is chosen first and max_date of that month is checked for validation
+    while (birth_date[0]>max_date[birth_date[1]] || birth_date[0]<1){
+        birth_date[0] = input_num("Enter a correct birth date");
+    }
+
+    // day adjustment
+    if (current_date[0] < birth_date[0]) {
+        current_date[0] += 30; // Assume the previous month has 30 days
+        current_date[1]--; // Borrow one month
+    }
+
+     // days must be less than their month max
+     // todo: fix bug for when birth month and current are same and current date is less than birth date
+    while (current_date[0]>birth_date[0] &&)
+    {
+        diff[0] %= current_date[1];
+        diff[1]++;
+    }
+
+    // birth year input
+    // in this comparision, the birth year must be less than current month
+    while (birth_date[2]>current_date[2] || birth_date[2]<1){
+        birth_date[2] = input_num("Enter a correct birth year");
+    }
+    
+    
+
+    
+    // temp year
+    int temp = birth_date[2];
+
+    // !leap year 
+    while (temp<=current_date[2])
+    {
+        if (is_leap_year(temp))
+        {
+            leap_count++;
+        }
+        temp++;
+    }
+    
+    // !DIFF
+    diff[0] = (current_date[0] - birth_date[0])+leap_count;
+    diff[1] = current_date[1] - birth_date[1];
+
+   
+
+    diff[2] = current_date[2] - birth_date[2];
+    
+    printf("\n%d years %d months and %d days",diff[2],diff[1],diff[0]);
+}
+
 // TASK 10
 // TASK 11
 // TASK 12
@@ -725,7 +848,7 @@ int main(){
         digit_sum();
         break;
     case 9:
-        // exact_age();
+        exact_age();
         break;
     case 10:
         // ninety_to_nine();
