@@ -674,6 +674,72 @@ void co_prime_detector(){
 
 // TASK 12
 
+/*
+
+[23:48, 9/14/2024] +92 332 8225743: Try calculating the greatest common divisor of M and N
+[23:49, 9/14/2024] +92 332 8225743: If the GCD isn't 1, check if the amount you're wanting to output is a multiple of the GCD
+[23:50, 9/14/2024] +92 332 8225743: If the GCD is 1, Check if the amount is less than or equal to the maximum of M and N
+[23:50, 9/14/2024] +92 332 8225743: Only those are the cases where its possible to output any amount
+[23:54, 9/14/2024] +92 315 1097780: *The target volume (X) is not a multiple of the greatest common divisor (GCD) of M and N: This is because the only volumes that can be obtained by pouring from one jug to another are multiples of the GCD.
+ * The target volume (X) is greater than the sum of the capacities of the two jugs (M + N): It's impossible to have more than M + N liters of water in total.
+[23:54, 9/14/2024] +92 315 1097780: first check these two cases then 
+think for a genral solution to get X by using if else statements
+
+[23:55, 9/14/2024] +92 326 9955645: Basically this uses the concepts of extended euclidean algorithm
+
+Which you will study in discrete structures in third semester 
+
+Iski basically bohat zyada long working hoti hai jo shyd app logon ko abhi smjh naa aye(try krlo wese smjh ajaye toh good hai)
+
+Refer to youtube for this algo
+
+Baki 3-9 walay combination se possible nhi hai becuz hamesha mod 0 ayega
+
+[00:00, 9/15/2024] +92 315 1097780: 
+Input:
+
+M: Capacity of Jug A
+N: Capacity of Jug B
+X: Target amount to measure
+Output:
+
+True if X liters can be measured in Jug A, False otherwise
+Steps:
+
+Validate input:
+
+If M, N, or X are less than or equal to 0, return False and print an error message.
+Check if X is within the possible range:
+
+If X is greater than the maximum capacity of both jugs (M + N), return False.
+Initialize jugs:
+
+Set A (Jug A) to 0.
+Set B (Jug B) to 0.
+Iterative process:
+
+While A is not equal to X:
+If A is empty (0):
+Fill A completely to its capacity (M).
+If B is full (N):
+Empty B completely (0).
+If A is not empty and B is not full:
+Pour water from A to B until either A is empty or B is full.
+Check result:
+
+If A is equal to X, return True as the target amount has been measured in Jug A.
+Otherwise, return False as it's impossible to measure X liters in Jug A with the given jugs.
+Explanation:
+
+Input validation: Ensures that all input values are positive.
+Range check: Verifies that X is within the possible range of M + N.
+Iterative process: Similar to the previous approach, it iteratively fills, empties, and pours water between the jugs.
+Result check: Determines if A has reached the target amount X.
+
+
+
+*/
+
 int main(){
 
     int choice;
