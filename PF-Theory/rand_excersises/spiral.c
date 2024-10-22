@@ -19,17 +19,61 @@ void print_arr(int arr){
 
 void traverse_right(int *arr,int *n,int *m,int *i){
     int inc;
-    int row;
-    int col;
+    int row = *n;
+    int col = *m;
     int change;
     
-    row = *n;
-    col = *m;
 
     while (inc !=i)
     {
         change = col+inc;
         arr[row][&change] = *i;
+
+    }
+    
+}
+void traverse_up(int *arr,int *n,int *m,int *i){
+    int inc;
+    int row = *n;
+    int col = *m;
+    int change;
+    
+
+    while (inc !=i)
+    {
+        change = row+inc;
+        arr[change][&col] = *i;
+
+    }
+    
+}
+
+void traverse_left(int *arr,int *n,int *m,int *i){
+    int inc;
+    int row = *n;
+    int col = *m;
+    int change;
+    
+
+    while (inc !=i)
+    {
+        change = col-inc;
+        arr[row][&change] = *i;
+
+    }
+    
+}
+void traverse_down(int *arr,int *n,int *m,int *i){
+    int inc;
+    int row = *n;
+    int col = *m;
+    int change;
+    
+
+    while (inc !=i)
+    {
+        change = row-inc;
+        arr[change][&col] = *i;
 
     }
     
@@ -59,10 +103,11 @@ int main(){
     {
         arr[n][m] = i;
         traverse_right(&arr,&n,&m,&i);
+        traverse_up(&arr,&n,&m,&i);
+        traverse_left(&arr,&n,&m,&i);
+        traverse_down(&arr,&n,&m,&i);
     }
     
-
-
 
 
     print_arr(arr);
