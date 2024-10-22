@@ -7,7 +7,7 @@ void print_arr(int arr){
     {
         for (j = 0; j < 20; j++)
         {
-            printf("%d ",arr[i][j]);
+            printf("%d ",arr[&i][&j]);
         }
         printf("\n");
     }
