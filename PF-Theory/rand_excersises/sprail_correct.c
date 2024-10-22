@@ -1,8 +1,8 @@
 #include <stdio.h>
 
 void print_arr(int arr[20][20]) {
-    for (int i = 0; i < 5; i++) {
-        for (int j = 0; j < 5; j++) {
+    for (int i = 0; i < 7; i++) {
+        for (int j = 0; j < 7; j++) {
             printf("%d ", arr[i][j]);
         }
         printf("\n");
