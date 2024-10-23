@@ -73,6 +73,28 @@ void display_main_options(){
     printf("0.  Exit\n");
 }
 
+void goodbye_message(){
+printf("\n");
+printf("|''||''| '||                      '||                               \n");
+printf("   ||     ||                       ||                               \n");
+printf("   ||     ||''|,  '''|.  `||''|,   || //`  '||  ||` .|''|, '||  ||` \n");
+printf("   ||     ||  || .|''||   ||  ||   ||<<     `|..||  ||  ||  ||  ||  \n");
+printf("  .||.   .||  || `|..||. .||  ||. .|| \\\\.       ||  `|..|'  `|..'|. \n");
+printf("                                             ,  |'                  \n");
+printf("                                              ''                    \n");
+printf("\n\n\n");
+printf("'||''''|               '\\\\  //`                        \\\\      //                   ||    \n");
+printf(" ||  .                   \\\\//                           \\\\    //   ''         ''    ||    \n");
+printf(" ||''|   .|''|, '||''|    ||    .|''|, '||  ||` '||''|   \\\\  //    ||  (''''  ||  ''||''  \n");
+printf(" ||      ||  ||  ||       ||    ||  ||  ||  ||   ||       \\\\//     ||   `'')  ||    ||    \n");
+printf(".||.     `|..|' .||.     .||.   `|..|'  `|..'|. .||.       \\\/     .||. `...' .||.   `|..' \n");
+
+
+
+}
+
+
+
 // TASK 1
 float kmps_to_mph(int kmps){return kmps*0.62*3600;}
 void speed_converter(){
@@ -680,7 +702,7 @@ int main(){
     switch (choice)
     {
     case 0: 
-        printf("\nThank You for your visit!");
+        goodbye_message();
         break;
     case 1:
         speed_converter();
