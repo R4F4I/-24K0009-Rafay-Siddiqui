@@ -14,60 +14,6 @@ Class section:  BAI-1A
 
 */
 
-
-
-
-   // OUTPUTS
- /*
- 11. COPRIMES 
-
-    input num1
-    input num2
-
-    i=1
-    lim = 0
-
-    GCD = 0
-
-    if num1>num2:
-        lim = num2
-    else:
-        lim = num1
-
-    while i != lim:
-        if num1 % i == 0 && num2 % i == 0:
-            GCD = i
-        endif
-        i = i + 1
-    endwhile
-
-    if GCD>1:
-        print "not co primes"
-
- */
-
- /*
- 12. 5L JUG and 3L JUG
-
-    n=5
-    m=3
-
-    jug1 = n  // space available
-    jug2 = m  // space available
-
-    while jug1 != n-4: // all the operations below will be performed iteratively until the space in jug1 is not n-4 where n = space in jug1 i.e 5
-        while jug1>0:
-            jug1 = jug1 - jug 2 
-            // jug1 = 5-3 =2 -> space available in jug1
-
-        // jug1 = 2-3 = -1 -> space available in jug1 as in overflow
-
-        if jug1 < 0: 
-            jug2=jug1+jug2 // 2=-1+3
-
-        jug1 = n // jug1 is now emptied, space is now back to default
- */
-
 #include <stdio.h>
 #include <time.h>
 
@@ -650,95 +596,94 @@ void ninety_to_nine(){
 
 // TASK 11
 
-void co_prime_detector(){
-
-    int num1,num2,i=1,lim=0,GCD=0;
-    num1 = input_num("Enter num 1");
-    num2 = input_num("Enter num 2");
-
+// greatest common divisor
+int GCD(int num1,int num2){
+    int i,gcd,lim;
+    
     if (num1 > num2){
         lim = num2;
     }else{
         lim = num1;
     }
+
     for (i = 1; i < lim; i++){
         if (num1 % i == num2 % i){ // 'num1 % i == num2 % i' is also valid logic as this only when happens when both =0, otherwise num1 == num2 (prev. 'num1 % i == 0 && num2 % i == 0' )
-            GCD = i;
+            gcd = i;
         }
     }
+    return gcd;
+}
+
+// when two nums have gcd<2
+void co_prime_detector(){
+
+    int num1,num2,i=1,lim=0,gcd=0;
+    num1 = input_num("Enter num 1");
+    num2 = input_num("Enter num 2");
+
+    gcd = GCD(num1,num2);
     
-    if (GCD > 1){
-        printf("not co primes");
+    if (gcd > 1){
+        printf("not co-primes");
+    } else
+    {
+        printf("co-primes");
     }
+    
 }
 
 // TASK 12
 
+// for the general case 
 /*
-
-[23:48, 9/14/2024] +92 332 8225743: Try calculating the greatest common divisor of M and N
-[23:49, 9/14/2024] +92 332 8225743: If the GCD isn't 1, check if the amount you're wanting to output is a multiple of the GCD
-[23:50, 9/14/2024] +92 332 8225743: If the GCD is 1, Check if the amount is less than or equal to the maximum of M and N
-[23:50, 9/14/2024] +92 332 8225743: Only those are the cases where its possible to output any amount
-[23:54, 9/14/2024] +92 315 1097780: *The target volume (X) is not a multiple of the greatest common divisor (GCD) of M and N: This is because the only volumes that can be obtained by pouring from one jug to another are multiples of the GCD.
- * The target volume (X) is greater than the sum of the capacities of the two jugs (M + N): It's impossible to have more than M + N liters of water in total.
-[23:54, 9/14/2024] +92 315 1097780: first check these two cases then 
-think for a genral solution to get X by using if else statements
-
-[23:55, 9/14/2024] +92 326 9955645: Basically this uses the concepts of extended euclidean algorithm
-
-Which you will study in discrete structures in third semester 
-
-Iski basically bohat zyada long working hoti hai jo shyd app logon ko abhi smjh naa aye(try krlo wese smjh ajaye toh good hai)
-
-Refer to youtube for this algo
-
-Baki 3-9 walay combination se possible nhi hai becuz hamesha mod 0 ayega
-
-[00:00, 9/15/2024] +92 315 1097780: 
-Input:
-
-M: Capacity of Jug A
-N: Capacity of Jug B
-X: Target amount to measure
-Output:
-
-True if X liters can be measured in Jug A, False otherwise
-Steps:
-
-Validate input:
-
-If M, N, or X are less than or equal to 0, return False and print an error message.
-Check if X is within the possible range:
-
-If X is greater than the maximum capacity of both jugs (M + N), return False.
-Initialize jugs:
-
-Set A (Jug A) to 0.
-Set B (Jug B) to 0.
-Iterative process:
-
-While A is not equal to X:
-If A is empty (0):
-Fill A completely to its capacity (M).
-If B is full (N):
-Empty B completely (0).
-If A is not empty and B is not full:
-Pour water from A to B until either A is empty or B is full.
-Check result:
-
-If A is equal to X, return True as the target amount has been measured in Jug A.
-Otherwise, return False as it's impossible to measure X liters in Jug A with the given jugs.
-Explanation:
-
-Input validation: Ensures that all input values are positive.
-Range check: Verifies that X is within the possible range of M + N.
-Iterative process: Similar to the previous approach, it iteratively fills, empties, and pours water between the jugs.
-Result check: Determines if A has reached the target amount X.
+r <= max(m,n) && r is multiple of GCD(m,n)
 
 
+* for the case:
+r is multiple of GCD(m,n)
+OR
+10 is a multiple of 5;
+
+10 % 5 == 0 hence,
+r % GCD(m,n) == 0
 
 */
+
+// returns larger of two inputs
+int max(int m, int n){
+    if (m>n)
+    {
+        return m;
+    } else
+    {
+        return n;
+    }
+    
+    
+
+}
+
+void die_hard_jug_possibility(){
+
+    int m,n,r,larger;
+
+    n = input_num("Input 1st jug value");
+    m = input_num("Input 2nd jug value");
+    r = input_num("Input desired water level");
+
+    if ((r <= max(m,n)) && (r % GCD(m,n) == 0))
+    {
+        printf("possible");
+    } else
+    {
+        printf("not possible");
+    }
+    
+    
+
+
+}
+
 
 int main(){
 
@@ -761,7 +706,7 @@ int main(){
 
     switch (choice)
     {
-    case 0:
+    case 0: 
         printf("\nThank You for your visit!");
         break;
     case 1:
@@ -798,7 +743,7 @@ int main(){
         co_prime_detector();
         break;
     case 12:
-        // die_hard_jug();
+        die_hard_jug_possibility();
         break;
     case 13:
         /* code */
