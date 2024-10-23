@@ -142,8 +142,6 @@ void legal_marriage(){
     );
 }
 
-
-
 // TASK 4
 
 void grocery_calc(){
@@ -596,15 +594,16 @@ void ninety_to_nine(){
 
 // TASK 11
 
+// returns larger of two inputs
+int max(int m, int n){
+    return (m>n) ? m : n;
+}
+
 // greatest common divisor
 int GCD(int num1,int num2){
     int i,gcd,lim;
     
-    if (num1 > num2){
-        lim = num2;
-    }else{
-        lim = num1;
-    }
+    lim = max(num1,num2);
 
     for (i = 1; i < lim; i++){
         if (num1 % i == num2 % i){ // 'num1 % i == num2 % i' is also valid logic as this only when happens when both =0, otherwise num1 == num2 (prev. 'num1 % i == 0 && num2 % i == 0' )
@@ -617,19 +616,13 @@ int GCD(int num1,int num2){
 // when two nums have gcd<2
 void co_prime_detector(){
 
-    int num1,num2,i=1,lim=0,gcd=0;
+    int num1,num2;
     num1 = input_num("Enter num 1");
     num2 = input_num("Enter num 2");
 
-    gcd = GCD(num1,num2);
-    
-    if (gcd > 1){
-        printf("not co-primes");
-    } else
-    {
-        printf("co-primes");
-    }
-    
+    (GCD(num1,num2) > 1) 
+        ? printf("not co-primes") 
+        : printf("co-primes");
 }
 
 // TASK 12
@@ -639,7 +632,7 @@ void co_prime_detector(){
 r <= max(m,n) && r is multiple of GCD(m,n)
 
 
-* for the case:
+* for this case:
 r is multiple of GCD(m,n)
 OR
 10 is a multiple of 5;
@@ -649,19 +642,6 @@ r % GCD(m,n) == 0
 
 */
 
-// returns larger of two inputs
-int max(int m, int n){
-    if (m>n)
-    {
-        return m;
-    } else
-    {
-        return n;
-    }
-    
-    
-
-}
 
 void die_hard_jug_possibility(){
 
@@ -671,16 +651,11 @@ void die_hard_jug_possibility(){
     m = input_num("Input 2nd jug value");
     r = input_num("Input desired water level");
 
-    if ((r <= max(m,n)) && (r % GCD(m,n) == 0))
-    {
+    if ((r <= max(m,n)) && (r % GCD(m,n) == 0)){
         printf("possible");
-    } else
-    {
+    } else{
         printf("not possible");
     }
-    
-    
-
 
 }
 
@@ -689,10 +664,8 @@ int main(){
 
     int choice;
 
-
-
     // UI
-    
+
     // display main header
     display_header();
     // show options
@@ -744,9 +717,6 @@ int main(){
         break;
     case 12:
         die_hard_jug_possibility();
-        break;
-    case 13:
-        /* code */
         break;
     
     default:
