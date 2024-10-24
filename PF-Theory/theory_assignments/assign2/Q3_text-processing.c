@@ -21,22 +21,40 @@
 //header
 #include <stdio.h>
 
+// if a string has a recurring character AKA a char which is same as the prev. char, do not pass it and increment the char removed count
+void perform_compression(char string[]){
+    char curr_char='a';
+    char prev_char='a';
+    int i=0,j=0;
+    
+
+    while (curr_char != '\0')
+    {
+        curr_char = string[i+1];
+        prev_char = string[i];
+        if (curr_char == prev_char){
+            j++;
+        } else {
+            printf("%c",prev_char);
+        }
+        i++;
+    }
+    printf("\ncharacter removed: %d\n",j);
+}
+
 //start main function
 int main (){
     
     // declaration
-    int num;
+    int i,j;
+    char words[][100] = {"booooook", "coooool", "heeeey","haaaaaaaaaaaahhhhhhhaaaaaaa"};
+    int n = sizeof(words) / sizeof(words[0]);
+    
 
-    // taking inputs
-    printf("enter num:");
-    scanf("%d",&num);
-
-
-    // processing
-
-
-    // output
-
+    for (i = 0; i < n; i++){
+        perform_compression(words[i]);
+    }
+    
 
 
     return 0;
