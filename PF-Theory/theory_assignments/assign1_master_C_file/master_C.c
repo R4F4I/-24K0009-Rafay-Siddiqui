@@ -637,7 +637,7 @@ int GCD(int num1,int num2){
 
 // when two nums have gcd<2
 void co_prime_detector(){
-
+    print_border("co-prime dectector");
     int num1,num2;
     num1 = input_num("Enter num 1");
     num2 = input_num("Enter num 2");
@@ -666,7 +666,7 @@ r % GCD(m,n) == 0
 
 
 void die_hard_jug_possibility(){
-
+    print_border("Die hard jug problem");
     int m,n,r,larger;
 
     n = input_num("Input 1st jug value");
