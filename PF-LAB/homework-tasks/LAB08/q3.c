@@ -1,6 +1,5 @@
 /*
-Generate a pattern of odd numbers in decreasing order starting from a user-specified number
-using nested loops.
+? Generate a pattern of odd numbers in decreasing order starting from a user-specified number using nested loops.
 
 * Name:         Rafay Siddiqui
 * roll number:  24k-0009

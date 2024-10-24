@@ -1,6 +1,5 @@
 /*
-? Write a C program to generate a diamond shape pattern using nested loops. The program
-should take the number of rows for the upper half of the diamond as input from the user.
+? Write a C program to generate a diamond shape pattern using nested loops. The program should take the number of rows for the upper half of the diamond as input from the user.
 
 n = 4
 

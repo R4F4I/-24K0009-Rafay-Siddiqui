@@ -1,6 +1,5 @@
 /*
-? Write a C program that finds the maximum element in a given m x n matrix and its position (row,
-column).
+? Write a C program that finds the maximum element in a given m x n matrix and its position (row, column).
 
 * Name:         Rafay Siddiqui
 * roll number:  24k-0009

@@ -1,6 +1,5 @@
 /*
-Write the saddle point(s) in a given 3x3 matrix. A saddle point is an element
-that is the smallest in its row and the largest in its column.
+? Write the saddle point(s) in a given 3x3 matrix. A saddle point is an element that is the smallest in its row and the largest in its column.
 
 * Name:         Rafay Siddiqui
 * roll number:  24k-0009

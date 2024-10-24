@@ -1,6 +1,5 @@
 /*
-Implement a C program to find the transpose of a given m x n matrix. Print the transposed
-matrix.
+? Implement a C program to find the transpose of a given m x n matrix. Print the transposed matrix.
 
 * Name:         Rafay Siddiqui
 * roll number:  24k-0009
