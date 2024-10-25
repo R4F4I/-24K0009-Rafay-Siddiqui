@@ -35,7 +35,7 @@ MAIN IDEA
 
 
 #include <stdio.h>
-
+#include <string.h>
 
 void sort_arr(char string[],int m){
     int i=0,j=0;
@@ -56,15 +56,22 @@ int anagram_checker(char string_1[],char string_2[],int len_1,int len_2){
 
     int is_anagram = 1;
     int i;
+    char temp_str[20];
+    char temp_str_2[20];
+
+    // to prevent the strings from being permanently changed in main
+    strcpy(temp_str,string_1);
+    strcpy(temp_str_2,string_2);
+
 
     if (len_1!=len_2){
         is_anagram = 0;
     } else{
-        sort_arr(string_1,len_1);
-        sort_arr(string_2,len_2);
+        sort_arr(temp_str,len_1);
+        sort_arr(temp_str_2,len_2);
 
         for (i = 0; i < len_1; i++){
-            if (string_1[i]!=string_2[i]){
+            if (temp_str[i]!=temp_str_2[i]){
                 is_anagram = 0;
             }
         }
@@ -80,47 +87,29 @@ int str_len(char string[]){
 
 int main(){
 
-    char arr[][20] = {"eat", "tea", "tan", "ate", "nat", "bat"};
+    char arr[][20] = {"eat", "tea", "tan", "ate", "tab", "nat", "bat"};
     int n = sizeof(arr)/sizeof(arr[0]);
     int i,j,k;
-    int anagram_stamp[6] = {0};
+    int anagram_stamp[20] = {0};
+    char temp_arr_val[20]; // to temporarily hold value as anagram_checker will alter the strings
 
     for (i = 0; i < n; i++)
     {
-        // reset array
-        for (j = 0; j < n; j++)
-        {
-            anagram_stamp[j] = 0;
-        }
+        // skip if anagram_stamp is 1
+        if (anagram_stamp[i]) continue;
 
         for (j = 0; j < n; j++)
         {
-            for (k = j+1; k < n; k++)
+            // if anagram_stamp[j] == 0 and  anagram_checker() ==1
+            
+            if (!anagram_stamp[j] && anagram_checker(arr[i],arr[j],str_len(arr[i]),str_len(arr[j])))
             {
-                //j,k are two hands in the array
-                //k is always ahead of j
-                //anagram_stamp keeps receiving `
-                anagram_stamp[j]=anagram_checker(arr[j],arr[k],str_len(arr[j]),str_len(arr[k]));
+                printf("%s ",arr[j]);
+                anagram_stamp[j] = 1;
             }
-            
         }
-        for (j = 0; j < n; j++)
-        {
-            
-            printf("%s ",arr[j]);
-            // if (anagram_stamp[j] ==1 )
-            // {
-                
-            // }
-            
-        }
-        
-        
+        printf("\n");
+
     }
-    
-
-
-
     return 0;
 }
-
