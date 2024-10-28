@@ -92,24 +92,26 @@ int main(){
     int i,j,k;
     int anagram_stamp[20] = {0};
     char temp_arr_val[20]; // to temporarily hold value as anagram_checker will alter the strings
-
+    
+    printf("[");
     for (i = 0; i < n; i++)
     {
         // skip if anagram_stamp is 1
         if (anagram_stamp[i]) continue;
-
+        printf("[");
         for (j = 0; j < n; j++)
         {
             // if anagram_stamp[j] == 0 and  anagram_checker() ==1
             
             if (!anagram_stamp[j] && anagram_checker(arr[i],arr[j],str_len(arr[i]),str_len(arr[j])))
             {
-                printf("%s ",arr[j]);
+                printf(",\'%s\' ",arr[j]);
                 anagram_stamp[j] = 1;
             }
         }
-        printf("\n");
+        printf("],");
 
     }
+     printf("]");
     return 0;
 }
