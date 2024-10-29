@@ -15,7 +15,7 @@ Class section:  BAI-1A
 */
 
 #include <stdio.h>
-#include <time.h>
+#include <time.h> //for exact age timestamp
 
 // simple function written to simply taking inputs
 int input_num(char string[]){
@@ -566,20 +566,20 @@ void exact_age(){
     
     // birth month input
     while (birth_date[1]>12||birth_date[1]<1){
-            birth_date[1] = input_num("Enter a correct birth month");
+            birth_date[1] = input_num("Enter a valid birth month");
     }
 
     // birth date input
     // in this comparision the month is chosen first and max_date of that month is checked for validation
     while (birth_date[0]>max_date[birth_date[1]] || birth_date[0]<1){
-        birth_date[0] = input_num("Enter a correct birth date");
+        birth_date[0] = input_num("Enter a valid birth date");
     }
 
     
     // birth year input
     // in this comparision, the birth year must be less than current month
     while (birth_date[2]>current_date[2] || birth_date[2]<1){
-        birth_date[2] = input_num("Enter a correct birth year");
+        birth_date[2] = input_num("Enter a valid birth year");
     }
     // 
     birth_days = date_to_days(birth_date[0],birth_date[1],birth_date[2]);
