@@ -15,57 +15,54 @@
 
 */
 
-// since the max matchsticks to pick is 4, we must make sure not leave the last few match to be less than 5,
+
 /*
-15 -> player a take 4 (max)
-11 -> player b take 4 (max)
-7  -> player a take 4 (max)
-3  
 
-.
-.
+// LOSE condition
 
-5 -> player b take 4 (max)
-1 -> player a takes (win)
+since the max matchsticks to pick is 4, we must make sure not leave the last few match to be less than 5,
+hence if there 5 match stick for A to chose from it has lost [else win]
 
+we can see this as, 
+whoever chooses from 5 loses
+the same as
+whoever chooses from 0 loses (because the other one has chosen the last matchsticks)
+
+meaning the if the n is a multiple of 5 (n%5==0) it is a guaranteed loss for A
+
+// win Strat
+
+if n%5!=0 then A must for B to receive a multiple of 5 in it's move
+
+hence A will take divide n by 5 and take the remainder (n%5) as (n-(n%5))%5==0
+                                                                    ^
+                                                                    ; > suppose n = 17, 17 % 5 = 2(remainder) A
+                                                                      > 17 -2 =15 (15%5=0)
+
+
+=======
+15 -> player A takes 4 (max)
+11 -> player B takes 4 (max)
+6  -> player A takes 4 (max)
+6  -> player B takes 1 
+5  -> player A takes 1 
+4  -> player B takes 4 (Win) 
+
+=======
 
 */
+ 
+#include <stdio.h>
+int play_game(int n, int max){    
 
-// if it is 
-
-// in the end 
-
-
-
-int play_game(int n, int m){
-    int player_A = 0;
-    int player_B = 0;
-    int i;
-
-    while (n!=0)
-    {
-        player_A += 4;
-        n-= 4;
-
-        player_B += 4;
-        n-= 4;
-    }
-    
-    
-
+    return (n%(max+1)==0) 
+        ? -1 
+        : n%(max+1);
 }
 
-
-#include <stdio.h>
-
 int main(){
-
-    int n = 10; // number of matchsticks
+    int n = 201; // number of matchsticks
     int max = 4; // max sticks possible to collect
-
-    
-
-
-
-
+    printf("For A: %d",play_game(n,max));
+    return 0;
 }
