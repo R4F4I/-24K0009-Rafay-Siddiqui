@@ -49,30 +49,31 @@ int main(){
     int hex_num =0;
 
 
-    // dec to bin
+    // ====dec to bin====
     bin_num = dec_to_bin(dec_num);
     printf("%d \n",bin_num);
 
-    // bin to dec
+    // ====bin to dec====
 
     printf("%d \n",bin_to_dec(bin_num));
 
 
-    // dec to hex
+    // ====dec to hex====
     printf("\ndec to hex: ");
     dec_to_hex(dec_num);
     
-    // hex to dec
+    // ====hex to dec====
     
     printf("\nhex_to_dec: %d",hex_to_dec("1A2"));
 
-    // bin to hex
+    
+    // ====bin to hex====
     printf("\nbin to hex: ");
     bin_to_hex(bin_num);
     
-    // hex to bin
-
-    printf("\n hex to bin: ",hex_to_bin("1A2"));
+    
+    // ====hex to bin====
+    printf("\nhex to bin: %d",hex_to_bin("1A2"));
 
 
 }
@@ -178,7 +179,7 @@ void dec_to_hex(int number){
     bin_to_hex(bin_num);
 }
 
-
+// THE MOST DIFFICULT IMPLEMENTATION, AS IT DEALT WITH A LOT OF INDEXING
 int hex_to_dec(char hexNumber[]){
 
     int i=0,arr_num[100]={0},max;
@@ -187,7 +188,6 @@ int hex_to_dec(char hexNumber[]){
     while (hexNumber[i]!='\0')
     {
         arr_num[i] = hex_to_dec_num(hexNumber[i]);
-        //printf("\narr_num[%d]: %d hex_to_dec_num(hexNumber[%d]): %d hexNumber[%d]: %c ",i,arr_num[i],i,hex_to_dec_num(hexNumber[i]),i,hexNumber[i]);
         i++;
     }
     //printf("value of at cah: %d\n",i);
@@ -197,7 +197,6 @@ int hex_to_dec(char hexNumber[]){
     while (max!=-1)
     {
         // arr x 16^i
-        printf("\n arr_num[%d]:%d , expo(16,%d): %d ",i,arr_num[i],max,i,expo(16,max));
         res += (arr_num[i])*(expo(16,max));
         max--;
         i++;
