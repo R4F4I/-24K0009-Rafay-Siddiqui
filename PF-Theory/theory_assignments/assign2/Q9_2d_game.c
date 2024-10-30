@@ -47,62 +47,164 @@ an arr of pos struct to handle all items 'I'
 
 #include <stdio.h>
 
-typedef struct pos{
+// contains entity detail
+typedef struct{
+    //char sprite;
     int x;
     int y;
-} position;
+} entity;
 
-void print_scene(char grid[]){
-    
-    
 
+void print_horizontal_border(){
+    int i;
+    for (i = 0; i < 7; i++){
+        printf("# ");
+    }
 }
 
-int main(){
 
+void print_arr(char grid[]){
+    int j;
+    for (j = 0; j < 5; j++){
+        printf("%c ",grid[j]);
+    }
+}
+
+/*the input is the grid, we will automatically determine where all the obstacles and items are, 
+and the player position from the given grid
+ */ 
+
+int main(){
+    int i,j,k=0,l;
+
+    /*
+    ! WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING 
+
+    GRID OF ARRAYS BEHAVE WEIRDLY
+
+    ! WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING 
+    */
 
     char grid[5][5] = {
-        {' ', ' ', 'I', 'X', ' '},
-        {' ', 'X', ' ', ' ', ' '},
-        {'I', ' ', 'X', 'X', ' '},
-        {' ', ' ', ' ', 'I', 'X'},
-        {' ', 'X', ' ', ' ', 'P'}
+    //    0    1    2    3    4
+        {' ', ' ', 'I', 'X', ' '}, // 0
+        {' ', 'X', ' ', ' ', ' '}, // 1
+        {'I', ' ', 'X', 'X', ' '}, // 2
+        {' ', ' ', ' ', 'I', 'X'}, // 3
+        {' ', 'X', ' ', ' ', 'P'}  // 4
     };
+    entity obstacle[6];
+    entity item[3];
+    entity player;
 
-    position player_pos;
-    position obstacle_pos[6];
-    position item_pos[2];
-    
-    char obstacle = 'X';
-    char item = 'I';
-    char player = 'P';
-    
+    char player_input; // supposed to be 'w' 'a' 's' 'd'
+
     int score = 0;
+    // move to be applied to the player
+    int player_move[2] = {0};
+    int next_move[2] = {0};
 
-
-    int i,j;
-
-    for (i = 0; i < 7; i++)
-    {
-        printf("# ");
-    }
-    printf("\n");
-    
+    //! DEFINE ENTITIES
     for (i = 0; i < 5; i++)
     {
-        printf("# ");
         for (j = 0; j < 5; j++)
         {
-            printf("%c ",grid[i][j]);
+            if (grid[i][j]=='X')
+            {
+                obstacle[k].x = i;
+                obstacle[k].y = j;
+                k++;
+            } 
+            else if (grid[i][j]=='I')
+            {
+                item[l].x = i;
+                item[l].y = j;
+                l++;
+            } else if (grid[i][j]=='P')
+            {
+                player.x = i;
+                player.y = j;
+            }
         }
-        printf("#");
-        printf("\n");
-        
-    } 
-
-    for (i = 0; i < 7; i++)
-    {
-        printf("# ");
     }
+
+
+    //! RUN GAME
+    // the game will end when the score is 3
+    while (score != 3)
+    {
+        printf("Score: %d\n\n",score);
+        //* ===PRINT SCENE===
+        print_horizontal_border();
+        printf("\n");
+        for (i = 0; i < 5; i++)
+        {
+            printf("# ");
+            // abstracted printing of array
+            print_arr(grid[i]);
+            printf("#\n");
+        } 
+        print_horizontal_border();
+        //* ===GET INPUT===
+        
+        printf("\n\nEnter a position: ");
+        scanf("%c",&player_input);
+        getchar();
+
+
+        //* ===APPLY INPUT===
+        switch (player_input)
+        {
+        case 'w':
+            player_move[0] = 0;    // up
+            player_move[1] = 1;    // up
+            break;
+        case 'a':
+            player_move[0] = -1;   // left
+            player_move[1] =  0;   // left
+            break;
+        case 's':
+            player_move[0] =  0;   // down
+            player_move[1] = -1;   // down
+            break;
+        case 'd':
+            player_move[0] =  1;   // right
+            player_move[1] =  0;   // right
+            break;
+        
+        default:
+            break;
+        }
+
+        // first create the move, next_move
+        // verify next_move, if it is a legal move (not out of bounds, not 'X') then we can apply it
+
+        next_move[0] = player.x + player_move[0];
+        next_move[1] = player.y + player_move[1];
+        printf("%d %d  ",next_move[0],next_move[1]);
+
+        if (grid[next_move[0]][next_move[1]]=='X'|| 
+                                  next_move[0]>4 || 
+                                  next_move[1]>4 || 
+                                  next_move[0]<0 || 
+                                  next_move[1]<0){
+            printf("\nWRONG MOVE!\n");
+        } else
+        {   
+            grid[player.x][player.y] = ' '; // remove P to old position
+            player.x = next_move[0];
+            player.y = next_move[1];
+            // reward player before removing item
+            if (grid[player.x][player.y]=='I')
+            {
+                score++;
+            }
+            grid[player.x][player.y] = 'P'; // update P to new position
+        }
+
+
+    }
+
+    return 0;
 
 }
