@@ -1,15 +1,15 @@
 /*
 
 ? | Write a C program that contains the following functions for different numerical conversions:
-? |     1. int BinaryToDecimal(int number); Converts a binary number to its decimal equivalent.
-? |     2. int DecimalToBinary(int number); Converts a decimal number to its binary equivalent.
-? |     3. void DecimalToHexadecimal(int number); Converts a decimal number to its hexadecimal
+? |     1. int bin_to_dec(int number); Converts a binary number to its decimal equivalent.
+? |     2. int dec_to_bin(int number); Converts a decimal number to its binary equivalent.
+? |     3. void dec_to_hex(int number); Converts a decimal number to its hexadecimal
 ? |     equivalent and prints it.
-? |     4. void HexadecimalToDecimal(string hexNumber); Converts a hexadecimal number to its
+? |     4. void hex_to_dec(string hexNumber); Converts a hexadecimal number to its
 ? |     decimal equivalent and prints it.
-? |     5. void BinaryToHexadecimal(int number); Converts a binary number to its hexadecimal
+? |     5. void bin_to_hex(int number); Converts a binary number to its hexadecimal
 ? |     equivalent and prints it.
-? |     6. void HexadecimalToBinary(string hexNumber); Converts a hexadecimal number to its binary
+? |     6. void hex_to_bin_2(string hexNumber); Converts a hexadecimal number to its binary
 ? |     equivalent and prints it.
 ? | Each function should take an appropriate input and return or display the converted value. Ensure that
 ? | the program handles invalid inputs gracefully. Your program must display the menu which function
@@ -28,29 +28,57 @@
 
 
 
-int BinaryToDecimal(int number);
-int DecimalToBinary(int number);
-void DecimalToHexadecimal(int number);
-void HexadecimalToDecimal(char hexNumber[]);
-void BinaryToHexadecimal(int number);
-void HexadecimalToBinary(char hexNumber[]);
+int bin_to_dec(int number);
+int dec_to_bin(int number);
+
+void dec_to_hex(int number);
+int hex_to_dec(char hexNumber[]); 
+
+int hex_to_bin(char hexNumber[]);
+void bin_to_hex(int number);
+
 int expo(int num1,int num2);
+// converts a single num from 0-15 to its equivalent 0-F
+char dec_to_hex_num(int dec_num);
+int hex_to_dec_num(char hex_val);
 
 int main(){
 
-    int num=10;
+    int dec_num=140;
+    int bin_num =0;
+    int hex_num =0;
 
-    printf("%d ",BinaryToDecimal(100101));
 
-    printf("%d ",DecimalToBinary());
-    printf("%d ",DecimalToHexadecimal());
-    printf("%d ",HexadecimalToDecimal());
-    printf("%d ",BinaryToHexadecimal());
-    printf("%d ",HexadecimalToBinary());
+    // dec to bin
+    bin_num = dec_to_bin(dec_num);
+    printf("%d \n",bin_num);
+
+    // bin to dec
+
+    printf("%d \n",bin_to_dec(bin_num));
+
+
+    // dec to hex
+    printf("\ndec to hex: ");
+    dec_to_hex(dec_num);
+    
+    // hex to dec
+    
+    printf("\nhex_to_dec: %d",hex_to_dec("1A2"));
+
+    // bin to hex
+    printf("\nbin to hex: ");
+    bin_to_hex(bin_num);
+    
+    // hex to bin
+
+    printf("\n hex to bin: ",hex_to_bin("1A2"));
 
 
 }
 
+
+// simple power function
 int expo(int num1,int num2){
     int i,res=1;
     for (i = 0; i < num2; i++)
@@ -60,37 +88,151 @@ int expo(int num1,int num2){
     return res;
 }
 
-int BinaryToDecimal(int number){
-    // extract last digit with number %10
-    int i=0,out=0;
-    while (number !=0)
-    {
-        if (number%10 == 1)
+
+
+
+// converts dec to hex
+char dec_to_hex_num(int dec_num){
+    char out;
+    switch (dec_num)
         {
-            out += expo(2,i);
+            case  0:out = '0';break;
+            case  1:out = '1';break;
+            case  2:out = '2';break;
+            case  3:out = '3';break;
+            case  4:out = '4';break;
+            case  5:out = '5';break;
+            case  6:out = '6';break;
+            case  7:out = '7';break;
+            case  8:out = '8';break;
+            case  9:out = '9';break;
+            case 10:out = 'A';break;
+            case 11:out = 'B';break;
+            case 12:out = 'C';break;
+            case 13:out = 'D';break;
+            case 14:out = 'E';break;
+            case 15:out = 'F';break;
+            default:break;
+        }
+    return out;
+}
+
+int hex_to_dec_num(char hex_val){
+    int out;
+    switch (hex_val)
+        {
+            case '0':out =  0;break;
+            case '1':out =  1;break;
+            case '2':out =  2;break;
+            case '3':out =  3;break;
+            case '4':out =  4;break;
+            case '5':out =  5;break;
+            case '6':out =  6;break;
+            case '7':out =  7;break;
+            case '8':out =  8;break;
+            case '9':out =  9;break;
+            case 'A':out = 10;break;
+            case 'B':out = 11;break;
+            case 'C':out = 12;break;
+            case 'D':out = 13;break;
+            case 'E':out = 14;break;
+            case 'F':out = 15;break;
+            default:break;
+        }
+    return out;
+}
+
+int bin_to_dec(int number){
+    // extract last digit with number %10
+    int i=0,res=0;
+    while (number !=0){
+        if (number%10 == 1){
+            res += expo(2,i);
         }
         number /= 10; // remove last digit
         i++;
     }
-    return out;
+    return res;
+}
 
+
+
+
+int dec_to_bin(int number){
+
+    if (number == 0){
+        return 0;
+    }
+    // perform the function 
+    return ((dec_to_bin(number/2)*10)+(number%2));
 
 }
-int DecimalToBinary(int number){
 
+
+
+
+void dec_to_hex(int number){
     
-
-
+    // convert dec -> bin -> hex
+    int bin_num =  dec_to_bin(number);
+    bin_to_hex(bin_num);
 }
-void DecimalToHexadecimal(int number){
 
+
+int hex_to_dec(char hexNumber[]){
+
+    int i=0,arr_num[100]={0},max;
+    long res=0;
+    // convert hex number to an array of integers
+    while (hexNumber[i]!='\0')
+    {
+        arr_num[i] = hex_to_dec_num(hexNumber[i]);
+        //printf("\narr_num[%d]: %d hex_to_dec_num(hexNumber[%d]): %d hexNumber[%d]: %c ",i,arr_num[i],i,hex_to_dec_num(hexNumber[i]),i,hexNumber[i]);
+        i++;
+    }
+    //printf("value of at cah: %d\n",i);
+    max=i-1;
+    i=0;
+    // convert the arr of integers into a single decimal
+    while (max!=-1)
+    {
+        // arr x 16^i
+        printf("\n arr_num[%d]:%d , expo(16,%d): %d ",i,arr_num[i],max,i,expo(16,max));
+        res += (arr_num[i])*(expo(16,max));
+        max--;
+        i++;
+    }
+    return res;
 }
-void HexadecimalToDecimal(char hexNumber[]){
 
-};
-void BinaryToHexadecimal(int number){
 
+
+void bin_to_hex(int number){
+    int temp,i=0,dec_num;
+    char out,string[100];
+
+    // extract 4 digits from beginning
+    while (number!=0)
+    {
+        temp = number % 10000;
+        dec_num = bin_to_dec(temp);
+        out = dec_to_hex_num(dec_num);
+        string[i] = out;
+        i++;
+        number /= 10000;
+    }
+
+    // print string in reverse
+    while (i>-1)
+    {
+        printf("%c",string[i]);
+        i--;
+    }
 }
-void HexadecimalToBinary(char hexNumber[]){
 
+
+
+int hex_to_bin(char hexNumber[]){
+    // hex to dec to bin
+    return dec_to_bin(hex_to_dec(hexNumber));
 }
