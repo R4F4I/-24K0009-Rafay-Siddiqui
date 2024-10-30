@@ -74,6 +74,38 @@ void print_arr(char grid[]){
 and the player position from the given grid
  */ 
 
+/*
+    //    0    1    2    3    4
+        {' ', ' ', 'I', 'X', ' '}, // 0
+        {' ', 'X', ' ', ' ', ' '}, // 1
+        {'I', ' ', 'X', 'X', ' '}, // 2
+        {' ', ' ', ' ', 'I', 'X'}, // 3
+        {' ', 'X', ' ', ' ', 'P'}  // 4
+    };
+
+    {
+        case 'd':
+            player_move[0] = 0;    // up
+            player_move[1] = 1;    // up
+            break;
+        case 'w':
+            player_move[0] = -1;   // left
+            player_move[1] =  0;   // left
+            break;
+        case 'a':
+            player_move[0] =  0;   // down
+            player_move[1] = -1;   // down
+            break;
+        case 's':
+            player_move[0] =  1;   // right
+            player_move[1] =  0;   // right
+            break;
+        
+        default:
+            break;
+        }
+*/
+
 int main(){
     int i,j,k=0,l;
 
@@ -81,6 +113,9 @@ int main(){
     ! WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING 
 
     GRID OF ARRAYS BEHAVE WEIRDLY
+
+    for some reason player_move[0] is y-axis and
+                    player_move[1] is x-axis
 
     ! WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING 
     */
@@ -133,7 +168,7 @@ int main(){
     // the game will end when the score is 3
     while (score != 3)
     {
-        printf("Score: %d\n\n",score);
+        printf("\n\n<--- Score: %d --->\n\n",score);
         //* ===PRINT SCENE===
         print_horizontal_border();
         printf("\n");
@@ -156,23 +191,30 @@ int main(){
         switch (player_input)
         {
         case 'w':
-            player_move[0] = 0;    // up
-            player_move[1] = 1;    // up
+            // decrease the y val, as y-val increase from top to bottom
+            // up
+            player_move[0] = -1;  // y-axis   // decreased
+            player_move[1] = 0;   // x-axis
             break;
         case 'a':
-            player_move[0] = -1;   // left
-            player_move[1] =  0;   // left
+            // left
+            player_move[0] =  0;   // y-axis
+            player_move[1] =  -1;  // x-axis  // decreased
             break;
         case 's':
-            player_move[0] =  0;   // down
-            player_move[1] = -1;   // down
+            // down
+            player_move[0] =  1;   // y-axis  // increased
+            player_move[1] =  0;   // x-axis
             break;
         case 'd':
-            player_move[0] =  1;   // right
-            player_move[1] =  0;   // right
+             // right
+            player_move[0] =  0;   // y-axis
+            player_move[1] =  1;   // x-axis  // increased
             break;
+
         
         default:
+            printf("WRONG MOVE\n");
             break;
         }
 
@@ -181,7 +223,7 @@ int main(){
 
         next_move[0] = player.x + player_move[0];
         next_move[1] = player.y + player_move[1];
-        printf("%d %d  ",next_move[0],next_move[1]);
+        //printf("%d %d  ",next_move[0],next_move[1]);
 
         if (grid[next_move[0]][next_move[1]]=='X'|| 
                                   next_move[0]>4 || 
@@ -204,6 +246,17 @@ int main(){
 
 
     }
+    //* ===PRINT SCENE===
+    print_horizontal_border();
+    printf("\n");
+    for (i = 0; i < 5; i++)
+    {
+        printf("# ");
+        // abstracted printing of array
+        print_arr(grid[i]);
+        printf("#\n");
+    } 
+    print_horizontal_border();
 
     return 0;
 
