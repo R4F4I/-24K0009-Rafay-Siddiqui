@@ -75,37 +75,6 @@ void print_arr(char grid[]){
 and the player position from the given grid
  */ 
 
-/*
-    //    0    1    2    3    4
-        {' ', ' ', 'I', 'X', ' '}, // 0
-        {' ', 'X', ' ', ' ', ' '}, // 1
-        {'I', ' ', 'X', 'X', ' '}, // 2
-        {' ', ' ', ' ', 'I', 'X'}, // 3
-        {' ', 'X', ' ', ' ', 'P'}  // 4
-    };
-
-    {
-        case 'd':
-            player_move[0] = 0;    // up
-            player_move[1] = 1;    // up
-            break;
-        case 'w':
-            player_move[0] = -1;   // left
-            player_move[1] =  0;   // left
-            break;
-        case 'a':
-            player_move[0] =  0;   // down
-            player_move[1] = -1;   // down
-            break;
-        case 's':
-            player_move[0] =  1;   // right
-            player_move[1] =  0;   // right
-            break;
-        
-        default:
-            break;
-        }
-*/
 
 int main(){
     int i,j,k=0,l;
