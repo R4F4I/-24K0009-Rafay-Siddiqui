@@ -101,8 +101,21 @@ void vert_histogram(int arr[],int len){
 
 int main(){
 
-    int values [] = {3, 5, 1, 4};
-    int count = sizeof(values)/sizeof(values[0]);
+    int count,i,values[100]={0};
+
+    printf("Enter the size of array: ");
+    scanf("%d",&count);
+
+    for (i = 0; i < count; i++)
+    {
+        printf("Enter Values(%d left): ",count-i);
+        scanf("%d",&values[i]);
+
+    }
+    
+
+    //int values [] = {3, 5, 1, 4};
+    //int count = sizeof(values)/sizeof(values[0]);
 
     printf("Horizontal Histogram\n\n");
     horz_histogram(values,count);
