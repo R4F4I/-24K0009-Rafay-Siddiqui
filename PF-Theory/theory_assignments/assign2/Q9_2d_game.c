@@ -60,6 +60,7 @@ void print_horizontal_border(){
     for (i = 0; i < 7; i++){
         printf("# ");
     }
+    printf("\n");
 }
 
 
@@ -110,14 +111,13 @@ int main(){
     int i,j,k=0,l;
 
     /*
-    ! WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING 
+    ! WARNING
 
     GRID OF ARRAYS BEHAVE WEIRDLY
 
     for some reason player_move[0] is y-axis and
                     player_move[1] is x-axis
-
-    ! WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING 
+ 
     */
 
     char grid[5][5] = {
@@ -165,24 +165,25 @@ int main(){
 
 
     //! RUN GAME
-    // the game will end when the score is 3
-    while (score != 3)
+
+    printf("\n\n<--- Score: %d --->\n\n",score);
+    //* ===PRINT SCENE===
+    print_horizontal_border();
+    for (i = 0; i < 5; i++)
     {
-        printf("\n\n<--- Score: %d --->\n\n",score);
-        //* ===PRINT SCENE===
-        print_horizontal_border();
-        printf("\n");
-        for (i = 0; i < 5; i++)
-        {
-            printf("# ");
-            // abstracted printing of array
-            print_arr(grid[i]);
-            printf("#\n");
-        } 
-        print_horizontal_border();
+        printf("# ");
+        // abstracted printing of array
+        print_arr(grid[i]);
+        printf("#\n");
+    } 
+    print_horizontal_border();
+
+    // the game will end when the score is 3
+    while (score != 3 && player_input!= 'q') 
+    {
         //* ===GET INPUT===
         
-        printf("\n\nEnter a position: ");
+        printf("\n\nEnter a position(or q to quit): ");
         scanf("%c",&player_input);
         getchar();
 
@@ -211,7 +212,8 @@ int main(){
             player_move[0] =  0;   // y-axis
             player_move[1] =  1;   // x-axis  // increased
             break;
-
+        case 'q':
+            break;
         
         default:
             printf("WRONG MOVE\n");
@@ -244,19 +246,18 @@ int main(){
             grid[player.x][player.y] = 'P'; // update P to new position
         }
 
-
+        //* ===PRINT SCENE===
+        print_horizontal_border();
+        for (i = 0; i < 5; i++)
+        {
+            printf("# ");
+            // abstracted printing of array
+            print_arr(grid[i]);
+            printf("#\n");
+        } 
+        print_horizontal_border();
     }
-    //* ===PRINT SCENE===
-    print_horizontal_border();
-    printf("\n");
-    for (i = 0; i < 5; i++)
-    {
-        printf("# ");
-        // abstracted printing of array
-        print_arr(grid[i]);
-        printf("#\n");
-    } 
-    print_horizontal_border();
+
 
     return 0;
 
