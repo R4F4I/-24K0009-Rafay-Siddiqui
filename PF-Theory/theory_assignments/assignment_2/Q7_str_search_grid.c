@@ -34,134 +34,138 @@ GREAT is not present Score 1
 
 */
 
+/*
+controls for the game
+
+* print grid
+* generate a new grid
+* search for string through grid
+    `> to implement this, 
+    `> first go through all rows 
+    `> convert the row into a string and search through this string
+* 
+
+*/
+
+
+
 #include <stdio.h>
 #include <string.h>
-// #include <stdlib.h>
-// #include <time.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define ROWS 5
+#define COLS 5
+
+void generate_grid(char array[ROWS][COLS],char st_id[]){
+    int i,j;
+    // add the rand val only to the first rows-1 values
+    for (i = 0; i < ROWS-1; i++){
+        for (j = 0; j < COLS; j++){
+            array[i][j] = 'A'+ (rand() % 26);
+        }
+        
+    }
+    // add the student id numbers
+    for (j = 0; j < COLS; j++)
+    {
+        array[ROWS-1][j] = st_id[j];
+    }
+}
+
+void print_array(char grid[ROWS][COLS]){
+    int i,j;
+    for (i = 0; i < ROWS; i++)
+    {
+        for (j = 0; j < COLS; j++)
+        {
+            printf("%c ",grid[i][j]);
+    }
+        printf("\n");
+    }
+}
+
+int search_string(char grid[ROWS][COLS], char input[]){
+    int i,j,k,match=1;
+    int n = strlen(input);
+    //printf("\nstrlen: %d",n);
+
+    // check each row
+
+    // i,j loops traverse trough the entire grid to find the first value of input
+    for (i = 0; i < ROWS; i++){
+        for (j = 0; j <= COLS-n; j++){
+            // k loop then checks through the remaining characters of the grid and the input string
+            for (k = 0; k < n; k++){
+                if (grid[i][j+k]!=input[k]){
+                    break;
+                }
+            }
+            if(n==k){
+                return 1; // string found
+            }
+        }
+    }
+    // check each column
+    for (i = 0; i < ROWS; i++){
+        for (j = 0; j < COLS-n; j++){
+            for (k = 0; k < n; k++){
+                if (grid[i+k][j]!=input[k]){
+                    break;
+                }
+            }
+            if(n==k){
+                return 1; // string found
+            }
+        }
+    }
+    return 0; // string not found
+}
+
 
 
 
 int main(){
-    // char grid[5][5] = {' '};
-    // for (i = 0; i < 5; i++)
-    // {
-    //     for (j = 0; j < 4; j++)
-    //     {
-    //         srand(time(0));
-    //         number1 = (rand()%6)+1;
-    //     }
-        
+
+    char grid[5][5] 
+    // = {
+    //     {'E', 'D', 'D', 'F', 'R'},
+    //     {'A', 'F', 'V', 'A', 'Q'},
+    //     {'T', 'E', 'B', 'S', 'T'},
+    //     {'L', 'J', 'G', 'T', 'T'},
+    //     {'0', '0', '0', '9', 'K'}
     // }
-    
-
-
-    char grid[5][5] = {
-        {'E', 'D', 'D', 'F', 'R'},
-        {'A', 'F', 'V', 'A', 'Q'},
-        {'T', 'E', 'B', 'S', 'T'},
-        {'L', 'J', 'G', 'T', 'T'},
-        {'0', '0', '0', '9', 'K'}
-    };
-	char end[3] = "END";
+    ;
+    char st_id[5] = {'0', '0', '0', '9', 'K'};
 
 
     int score = 0;
-    int index_i, index_j,match=1,i,j,k=0;
 
-    char player_input[10] = {' '};
+    char player_input[50];
 
-	// show game
-	
-	for (i = 0; i < 5; i++){
-            for (j = 0; j < 5; j++){
-                printf("%c ",grid[i][j]);
-            }
-            printf("\n");
-        }
+    srand(time(NULL));
 
-
+    // generate array
+    generate_grid(grid, st_id);
 
     // ! play game
-    while (strcmp(player_input,end)!=0)
-    {
-    	match = 1;
+    while (strcmp(player_input,"END")) {
+        // show array
+        print_array(grid);
         printf("\nEnter a string to find: ");
-        scanf("%s",&player_input);
-//        if (strcmp(player_input,"END")){
-//        	break;
-//        }
+        scanf("%s",player_input);
 
-        // find first instance of the input's first char
-
-        for (i = 0; i < 4; i++){
-            for (j = 0; j < 5; j++){
-                if (player_input[0]==grid[j][i]){
-                    // if it is found break out the loop 
-                    index_j = j; // y axis
-                    index_i = i; // x axis
-
-
-                    // now try to circle around the found val to check for second char
-                    if(grid[index_i+1][index_j] == player_input[1] ) // check down
-                    {
-                        // if the second char is found at the upper side, traverse the entire upper side
-                        while(player_input[k]!='\0' ){ //|| grid[index_i+k][index_j]==player_input[k]
-                            k++;
-                            if(grid[index_i+k][index_j]!=player_input[k]){
-                                match = 0;
-                                printf("\n%c ",grid[index_i+k][index_j]);
-                                break;
-                            }
-                        }
-                    }
-                    else if(grid[index_i-1][index_j] == player_input[1] ) // check up
-                    {
-                        while(player_input[k]!='\0' ){ 
-                            k++;
-                            if(grid[index_i-k][index_j]!=player_input[k]){
-                                match = 0;
-                                printf("\n%c ",grid[index_i+k][index_j]);
-                                break;
-                            }
-                        }
-                    } 
-                    else if(grid[index_i][index_j-1] == player_input[1] ) // check left
-                    {
-                        while(player_input[k]!='\0' ){ 
-                            k++;
-                            if(grid[index_i][index_j-k]!=player_input[k]){
-                                match = 0;
-                                printf("\n%c ",grid[index_i+k][index_j]);
-                                break;
-                            }
-                        }
-                    } 
-                    else if(grid[index_i][index_j+1] == player_input[1] ) // check right
-                    {
-                        while(player_input[k]!='\0' ){ 
-                            k++;
-                            if(grid[index_i][index_j+k]!=player_input[k]){
-                                match = 0;
-                                printf("\n%c ",grid[index_i+k][index_j]);
-                                break;
-                            }
-                        }
-                    } 
-                }
-                printf("\nindex_i: %d, index_j: %d",index_i,index_j);
-            }
+        if (search_string(grid,player_input)){
+            score++;
+            printf("%s is present. Score: %d\n", player_input, score);
+        } else if (!strcmp(player_input,"END")){
+            break;
         }
-
+        else{
+            score--;
+            printf("%s is not present. Score: %d\n", player_input, score);
+        }
         
-
-        if (match == 1){
-            printf("\n%c ",grid[index_i+k][index_j]);
-        	score++;
-            printf("%s is present, score: %d\n",player_input,score);
-        } else{
-        	score--;
-        	printf("%s is not present, score: %d\n",player_input,score);
-        }
 
     }
     
