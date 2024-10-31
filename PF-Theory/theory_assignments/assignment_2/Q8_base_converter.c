@@ -48,33 +48,41 @@ int main(){
     int bin_num =0;
     int hex_num =0;
 
+    int bin_result;
+    int dec_result;
 
-    // ====dec to bin====
+
+// ==== Decimal to Binary ====
+    printf("Decimal to Binary Conversion:\n");
     bin_num = dec_to_bin(dec_num);
-    printf("%d \n",bin_num);
+    printf("Decimal %d to Binary: %d\n\n", dec_num, bin_num);
 
-    // ====bin to dec====
+    // ==== Binary to Decimal ====
+    printf("Binary to Decimal Conversion:\n");
+    dec_result = bin_to_dec(bin_num);
+    printf("Binary %d to Decimal: %d\n\n", bin_num, dec_result);
 
-    printf("%d \n",bin_to_dec(bin_num));
-
-
-    // ====dec to hex====
-    printf("\ndec to hex: ");
+    // ==== Decimal to Hexadecimal ====
+    printf("Decimal to Hexadecimal Conversion:\n");
+    printf("Decimal %d to Hexadecimal: ", dec_num);
     dec_to_hex(dec_num);
-    
-    // ====hex to dec====
-    
-    printf("\nhex_to_dec: %d",hex_to_dec("1A2"));
+    printf("\n\n");
 
-    
-    // ====bin to hex====
-    printf("\nbin to hex: ");
+    // ==== Hexadecimal to Decimal ====
+    printf("Hexadecimal to Decimal Conversion:\n");
+    const char *hex_str = "1A2";
+    dec_result = hex_to_dec(hex_str);
+    printf("Hexadecimal %s to Decimal: %d\n\n", hex_str, dec_result);
+
+    // ==== Binary to Hexadecimal ====
+    printf("Binary to Hexadecimal Conversion:\n");
+    printf("Binary %d to Hexadecimal: ", bin_num);
     bin_to_hex(bin_num);
-    
-    
-    // ====hex to bin====
-    printf("\nhex to bin: %d",hex_to_bin("1A2"));
+    printf("\n\n");
 
+    // ==== Hexadecimal to Binary ====
+    printf("Hexadecimal to Binary Conversion:\n");
+    printf("Hexadecimal %s to Binary: %d\n", hex_str, hex_to_bin(hex_str));
 
 }
 

@@ -80,12 +80,10 @@ int main(){
     int i,j,k=0,l;
 
     /*
-    ! WARNING
 
-    GRID OF ARRAYS BEHAVE WEIRDLY
-
-    for some reason player_move[0] is y-axis and
-                    player_move[1] is x-axis
+    GRID OF ARRAYS 
+     player_move[0] is y-axis and
+     player_move[1] is x-axis
  
     */
 
