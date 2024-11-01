@@ -16,16 +16,3 @@ The most problematic was dealing with caveats of `C`, dealing with string functi
 ### Overly complex methods
 - At times, the initial logic proposed required too many mechanisms to acheive the desired results, these ideas were abandoned when they were met with above two problems
 - One example of a method being followed is in finding the second smallest, this could have been solved by just sorting the array and choosing the value at 2 index
-
-# Q1
-# Q2
-
-# Q3
-# Q4
-
-
-# Q6
-# Q7
-# Q8
-# Q9
-# 10
