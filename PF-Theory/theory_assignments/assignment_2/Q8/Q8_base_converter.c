@@ -44,7 +44,12 @@ int hex_to_dec_num(char hex_val);
 
 int main(){
 
-    int dec_num=140;
+
+    int dec_num;
+
+    printf("Enter a decimal number: ");
+    scanf("%d",dec_num);
+
     int bin_num =0;
     int hex_num =0;
 

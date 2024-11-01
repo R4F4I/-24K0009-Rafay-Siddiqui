@@ -61,7 +61,10 @@ int play_game(int n, int max){
 }
 
 int main(){
-    int n = 201; // number of matchsticks
+    int n; // number of matchsticks
+    printf("Enter matchsticks: ");
+    scanf("%d",&n);
+    
     int max = 4; // max sticks possible to collect
     printf("For A: %d",play_game(n,max));
     return 0;

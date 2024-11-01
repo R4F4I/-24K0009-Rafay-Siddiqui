@@ -66,12 +66,25 @@ void analyze_char_freq(char slogan[]){
 
 //start main function
 int main (){
+
     
     // declaration
     //             V``dont change this 
-    char slogans[][20] = {"buy now", "save big", "limited offer", " free prizes"};
-    int n = sizeof(slogans) / sizeof(slogans[0]);
-    int i;
+    char slogans[][20]= {"buy now", "save big", "limited offer", " free prizes"};
+    int n,i;
+    
+    // printf("Enter the quantity of slogans: ");
+    // scanf("%d",&n);
+
+    // for (i = 0; i < n; i++)
+    // {
+    //     printf("Enter the slogans: ");
+    //     scanf("%s",slogans[i]);
+    //     getchar();
+    // }
+    
+
+    n = sizeof(slogans) / sizeof(slogans[0]);
     
 
     // processing

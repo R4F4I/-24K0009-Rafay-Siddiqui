@@ -26,10 +26,7 @@ $$
 
 # Q3
 # Q4
-# Q5
 
-
-![alt text](readme_sources/image.png)
 
 # Q6
 # Q7

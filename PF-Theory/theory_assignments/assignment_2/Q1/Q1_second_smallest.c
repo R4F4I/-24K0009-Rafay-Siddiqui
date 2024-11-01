@@ -41,9 +41,8 @@ int main (){
             k = arr[i];
         }
     }
+    // output    
     printf("The Second smallest element in the array is: %d" ,k);
-
-    // output
 
     return 0;
 
