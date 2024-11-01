@@ -45,6 +45,72 @@ implementing the program.
 
 
 
+    *
+   * *
+***   ***
+ *     *
+  *   *
+
+        *
+       * *
+      *   *
+     *     *
+*****       *****
+ *             *
+  *           *
+   *         *
+    *       *
+
+            *
+           * *
+          *   *
+         *     *
+        *       *
+       *         *
+*******           *******
+ *                     *
+  *                   *
+   *                 *
+    *               *
+     *             *
+      *           *
+
+                * 
+               * *
+              *   *
+             *     *
+            *       *
+           *         *
+          *           *
+         *             *
+*********               ********* 
+ *                             *
+  *                           *
+   *                         *
+    *                       *
+     *                     *
+      *                   *
+       *                 *
+        *               *
+
+                * 
+               * *
+              *   *
+             *     *
+            *       *
+           *         *
+          *           *
+         *             *
+*********               *********
+ *                             *
+  *                           *
+   *                         *
+    *                       *
+     *                     *
+      *                   *
+       *                 *
+        *               *
+
 */
 
 /*
@@ -85,14 +151,16 @@ void star_top(int n){
 }
 
 void star_mid(int n){
-    int i,j;
+    int i,j,k;
 
     // print the widest portion
     for (i = 0; i < n; i++)
     {
         printf("*");
     }
-    for (i = 0; i < n+2; i++)
+    // the space required for the inner portion HAS to be twice the input n, as the width is 2n
+    printf(" ");
+    for (i = 0; i < 2*(n-2); i++)
     {
         printf(" ");
     }
@@ -111,16 +179,32 @@ void star_mid(int n){
          *     *
           *   *
            * *
-            * 
+
     */
     
-    for (i = 0; i < n; i++)
+    for (i = 1; i < n; i++)
     {
-        printf("*");
-        for (j = 3*i; j >1; j--)
+        // outside spaces
+        for (j = 0; j < i; j++)
         {
             printf(" ");
         }
+        
+        printf("*");
+        // inside spaces
+        for (j = 2*(n-i); j >1; j--)
+        {
+            
+           
+            printf(" ");
+        }
+        printf(" ");
+        // print the mandatory n spaces
+        for (j = 0; j < 2*(n-2)-1; j++)
+        {
+            printf(" ");
+        }
+            
         printf("*");
         printf("\n");
     }
@@ -128,6 +212,27 @@ void star_mid(int n){
 }
 
 void star_bottom(int n){
+    // this is two triangles with different spaces
+
+    // spaces 1
+    
+    // star 1
+    printf("*");
+    
+    // spaces 2
+    
+    // star 2
+    printf("*");
+    
+    // spaces 3
+    
+    // star 3
+    printf("*");
+    // spaces 4
+    
+    // star 4
+    printf("*");
+    
 
 }
 
@@ -137,7 +242,7 @@ void star_bottom(int n){
 int main(){
 
     int n=0;
-    while (n%2==0){
+    while (n%2==0 || n<3){
         printf("Enter an odd num: ");
         scanf("%d",&n);
     }
@@ -145,7 +250,7 @@ int main(){
 
     star_top(n-1);
     star_mid(n);
-    star_bottom(n);
+    //star_bottom(n);
 
     return 0;
 }
