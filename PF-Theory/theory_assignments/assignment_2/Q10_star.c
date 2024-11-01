@@ -125,6 +125,17 @@ void star_mid(int n){
 
 }
 
+// abstracted due to repetition
+// spaces are decreasing as 3 2 1 0 for n=5, 1 0 for n = 3
+void decreasing_odd_spaces(int i,int n){
+    int j;
+
+    for (j = (n-i)-2; j >0; j--)
+    {
+        printf(" ");
+    }
+}
+
 void star_bottom(int n){
     int i,j;
     // this is two triangles with different spaces
@@ -133,10 +144,7 @@ void star_bottom(int n){
         
         // spaces 1
         // spaces are decreasing as 3 2 1 0 for n=5, 1 0 for n = 3
-        for (j = (n-i)-2; j >0; j--)
-        {
-            printf(" ");
-        }
+        decreasing_odd_spaces(i,n);
         
         // star 1
         if (i<n-1)
@@ -146,10 +154,7 @@ void star_bottom(int n){
         
         // spaces 2
         // same as space 1
-        for (j = (n-i)-2; j >0; j--)
-        {
-            printf(" ");
-        }
+        decreasing_odd_spaces(i,n);
         // star 2
         if (i<n-2)
         {
@@ -179,10 +184,7 @@ void star_bottom(int n){
         }
         // spaces 4
         // same as space 1
-        for (j = (n-i)-2; j >0; j--)
-        {
-            printf(" ");
-        }
+        decreasing_odd_spaces(i,n);
         // star 4
         if (i<n-1)
         {
