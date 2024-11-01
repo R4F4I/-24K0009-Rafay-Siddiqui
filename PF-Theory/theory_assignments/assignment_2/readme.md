@@ -3,8 +3,8 @@
 
 $$\begin{aligned}
 &\text{Name: } &\text{Rafay Siddiqui} \\
-&\text{Roll No: } &\text{24K-0009} \\
-&\text{Class: } &\text{ BAI-1A} \\
+&\text{Student No: } &\text{24K-0009} \\
+&\text{Section: } &\text{ BAI-1A} \\
 \end{aligned}$$
 
 ## Typical problems faced during this assignment
