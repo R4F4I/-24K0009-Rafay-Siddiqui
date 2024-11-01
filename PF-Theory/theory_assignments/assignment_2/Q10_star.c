@@ -17,99 +17,12 @@ and there's no need to create a separate folder for Q01. (Worth 1 point)
 The remaining marks will be based on the correctness, completeness, and the approach you take in
 implementing the program.
 
-     *
-    * *
- ***   ***
-  *     *
-   *   *
-  * * * *
-*         *
 
-       *
-      *  *
-* *
-* *
-***** *****
-* *
-* *
-* *
-* *
-* * * *
-* * * *
-* * * *
-* *
 
 * Name:         Rafay Siddiqui
 * roll number:  24k-0009
 * section:      BAI-1A
 
-
-
-    *
-   * *
-***   ***
- *     *
-  *   *
-
-        *
-       * *
-      *   *
-     *     *
-*****       *****
- *             *
-  *           *
-   *         *
-    *       *
-
-            *
-           * *
-          *   *
-         *     *
-        *       *
-       *         *
-*******           *******
- *                     *
-  *                   *
-   *                 *
-    *               *
-     *             *
-      *           *
-
-                * 
-               * *
-              *   *
-             *     *
-            *       *
-           *         *
-          *           *
-         *             *
-*********               ********* 
- *                             *
-  *                           *
-   *                         *
-    *                       *
-     *                     *
-      *                   *
-       *                 *
-        *               *
-
-                * 
-               * *
-              *   *
-             *     *
-            *       *
-           *         *
-          *           *
-         *             *
-*********               *********
- *                             *
-  *                           *
-   *                         *
-    *                       *
-     *                     *
-      *                   *
-       *                 *
-        *               *
 
 */
 
@@ -117,9 +30,10 @@ implementing the program.
 PROPOSAL
 
 * 3 main parts of the star,
-  `> TOP -->  will start out like a typical centered triangle only offset due to the star shoulders
-  `> MID --> 
-  `> BOTTOM
+  `> TOP         -->  will start out like a typical centered triangle only offset due to the star shoulders
+  `> MID         -->  will print the widest portion, then print the the hollow triangle but reversed AND with extra constant number of spaces (dependant on the input) to match the stars wideness
+  `> BOTTOM      -->  will print 4 hollow triangles with decreasing spaces, along with a middle space increasing with the increments of 4 to give the right leg of the star an increasing motion, the space inside the stars, space 2 and space 3 will however keep decreasing like the outer spaces,
+  `> ADJUSTMENTS --> the entire star will depend mostly on finetuning beyond the above criteria to achieve the desired results
 
 
 
@@ -212,28 +126,74 @@ void star_mid(int n){
 }
 
 void star_bottom(int n){
+    int i,j;
     // this is two triangles with different spaces
+    for (i = 0; i < n; i++)
+    {
+        
+        // spaces 1
+        // spaces are decreasing as 3 2 1 0 for n=5, 1 0 for n = 3
+        for (j = (n-i)-2; j >0; j--)
+        {
+            printf(" ");
+        }
+        
+        // star 1
+        if (i<n-1)
+        {
+            printf("*");
+        }
+        
+        // spaces 2
+        // same as space 1
+        for (j = (n-i)-2; j >0; j--)
+        {
+            printf(" ");
+        }
+        // star 2
+        if (i<n-2)
+        {
+            printf("*");
+        }
+        
+        
+        // spaces 3
+        // spaces will increase with increments of 4 for n = 5 until it is the last line then with additional two spaces to compensate for the missing stars
+        for (j = 0; j<=4*(i); j++)
+        {
+            printf(" ");
+            
+            
+        }
+        
+            // if the last line is reached add 2 addtional spaces, n-3 was reached thrugh adjustments
+            if (i>n-3)
+            {
+                printf("  ");
+            }
 
-    // spaces 1
-    
-    // star 1
-    printf("*");
-    
-    // spaces 2
-    
-    // star 2
-    printf("*");
-    
-    // spaces 3
-    
-    // star 3
-    printf("*");
-    // spaces 4
-    
-    // star 4
-    printf("*");
-    
+        // star 3
+         if (i<n-2)
+        {
+            printf("*");
+        }
+        // spaces 4
+        // same as space 1
+        for (j = (n-i)-2; j >0; j--)
+        {
+            printf(" ");
+        }
+        // star 4
+        if (i<n-1)
+        {
+            printf("*");
+        }
+        
 
+        printf("\n");
+    }
+    
+    
 }
 
 #include <stdio.h>
@@ -250,7 +210,123 @@ int main(){
 
     star_top(n-1);
     star_mid(n);
-    //star_bottom(n);
+    star_bottom(n);
 
     return 0;
 }
+
+/*
+RESULTS:
+
+Enter an odd num: 3                                                      
+    *                                                                    
+   * *                                                                   
+***   ***                                                                
+ *     *                                                                 
+  *   *                                                                  
+ * * * *                                                                 
+*       *                                                                
+                                                                
+
+Enter an odd num: 5                                           
+        *                                                    
+       * *                                                  
+      *   *                                                
+     *     *                                              
+*****       *****                                        
+ *             *                                        
+  *           *                                        
+   *         *                                        
+    *       *                                        
+   *   * *   *                                      
+  *  *     *  *                                    
+ * *         * *                                    
+*               *                                    
+                                                      
+
+Enter an odd num: 7                                     
+            *                                            
+           * *                                            
+          *   *                                            
+         *     *                                            
+        *       *                                            
+       *         *                                            
+*******           *******                                      
+ *                     *                                        
+  *                   *                                          
+   *                 *                                            
+    *               *      
+     *             *        
+      *           *          
+     *     * *     *          
+    *    *     *    *          
+   *   *         *   *          
+  *  *             *  *          
+ * *                 * *          
+*                       *          
+                                    
+Enter an odd num: 21                  
+                                        *                                     
+                                       * *                                     
+                                      *   *                                      
+                                     *     *  
+                                    *       * 
+                                   *         * 
+                                  *           *
+                                 *             *
+                                *               *
+                               *                 *
+                              *                   *
+                             *                     *
+                            *                       *
+                           *                         *
+                          *                           *
+                         *                             *
+                        *                               *
+                       *                                 *
+                      *                                   * 
+                     *                                     *
+*********************                                       *********************
+ *                                                                             *
+  *                                                                           *
+   *                                                                         *
+    *                                                                       *
+     *                                                                     *
+      *                                                                   *
+       *                                                                 *
+        *                                                               *
+         *                                                             *
+          *                                                           *
+           *                                                         *
+            *                                                       *
+             *                                                     *
+              *                                                   *
+               *                                                 *
+                *                                               *
+                 *                                             *
+                  *                                           *
+                   *                                         *
+                    *                                       *
+                   *                   * *                   *
+                  *                  *     *                  *
+                 *                 *         *                 *
+                *                *             *                *
+               *               *                 *               *
+              *              *                     *              *
+             *             *                         *             *
+            *            *                             *            *
+           *           *                                 *           *
+          *          *                                     *          *
+         *         *                                         *         *
+        *        *                                             *        *
+       *       *                                                 *       *
+      *      *                                                     *      *
+     *     *                                                         *     *
+    *    *                                                             *    *
+   *   *                                                                 *   *
+  *  *                                                                     *  *
+ * *                                                                         * *
+*                                                                               *
+
+
+*/
