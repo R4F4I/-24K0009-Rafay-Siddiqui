@@ -90,28 +90,31 @@ int main(){
     char arr[][20] = {"eat", "tea", "tan", "ate", "tab", "nat", "bat"};
     int n = sizeof(arr)/sizeof(arr[0]);
     int i,j,k;
-    int anagram_stamp[20] = {0};
+    int anagram_stamp[20] = {0}; // holds identification of whether an nth string has been identified as an anagram
     char temp_arr_val[20]; // to temporarily hold value as anagram_checker will alter the strings
     
     printf("[");
-    for (i = 0; i < n; i++)
+    for (i = 0; i < n-1; i++)
     {
         // skip if anagram_stamp is 1
         if (anagram_stamp[i]) continue;
         printf("[");
-        for (j = 0; j < n; j++)
+        for (j = 0; j < n-1; j++)
         {
             // if anagram_stamp[j] == 0 and  anagram_checker() ==1
             
             if (!anagram_stamp[j] && anagram_checker(arr[i],arr[j],str_len(arr[i]),str_len(arr[j])))
             {
-                printf(",\'%s\' ",arr[j]);
+                printf("\'%s\', ",arr[j]);
                 anagram_stamp[j] = 1;
             }
         }
-        printf("],");
+        printf("\'%s\' ",arr[j]);
+        // weird workaround to avoid printing ',' at the last bracket
+        printf("]"); printf((i<n-3) ?",":"");
 
     }
+    
      printf("]");
     return 0;
 }

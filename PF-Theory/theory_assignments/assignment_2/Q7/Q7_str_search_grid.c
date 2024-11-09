@@ -54,7 +54,7 @@ controls for the game
 #include <stdlib.h>
 #include <time.h>
 
-#define ROWS 5
+#define ROWS 6
 #define COLS 5
 
 void generate_grid(char array[ROWS][COLS],char st_id[]){
@@ -107,10 +107,11 @@ int search_string(char grid[ROWS][COLS], char input[]){
         }
     }
     // check each column
-    for (i = 0; i < ROWS; i++){
-        for (j = 0; j < COLS-n; j++){
+    for (i = 0; i < COLS; i++){
+        for (j = 0; j < ROWS-n; j++){
             for (k = 0; k < n; k++){
-                if (grid[i+k][j]!=input[k]){
+                // j is in the y index because we checking the columns which are the y index
+                if (grid[j+k][i]!=input[k]){
                     break;
                 }
             }
@@ -127,15 +128,7 @@ int search_string(char grid[ROWS][COLS], char input[]){
 
 int main(){
 
-    char grid[5][5] 
-    // = {
-    //     {'E', 'D', 'D', 'F', 'R'},
-    //     {'A', 'F', 'V', 'A', 'Q'},
-    //     {'T', 'E', 'B', 'S', 'T'},
-    //     {'L', 'J', 'G', 'T', 'T'},
-    //     {'0', '0', '0', '9', 'K'}
-    // }
-    ;
+    char grid[ROWS][COLS];
     char st_id[5] = {'0', '0', '0', '9', 'K'};
 
 
