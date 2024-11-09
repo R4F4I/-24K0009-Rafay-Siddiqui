@@ -46,9 +46,13 @@ int main(){
 
 
     int dec_num;
+    char hex_str[20];
 
     printf("Enter a decimal number: ");
-    scanf("%d",dec_num);
+    scanf("%d",&dec_num);
+
+    printf("Enter a hexadecimal number: ");
+    scanf("%s", hex_str);  // Get the hexadecimal input from the user
 
     int bin_num =0;
     int hex_num =0;
@@ -75,7 +79,6 @@ int main(){
 
     // ==== Hexadecimal to Decimal ====
     printf("Hexadecimal to Decimal Conversion:\n");
-    const char *hex_str = "1A2";
     dec_result = hex_to_dec(hex_str);
     printf("Hexadecimal %s to Decimal: %d\n\n", hex_str, dec_result);
 
@@ -233,14 +236,17 @@ void bin_to_hex(int number){
         i++;
         number /= 10000;
     }
+    string[i+1] = '0';
 
     // print string in reverse
-    while (i>-1)
+    while (i>0)
     {
-        printf("%c",string[i]);
+        printf("%c",string[i-1]);
         i--;
     }
+    printf("\n");
 }
+
 
 
 

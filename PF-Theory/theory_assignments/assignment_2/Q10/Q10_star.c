@@ -33,7 +33,7 @@ PROPOSAL
   `> TOP         -->  will start out like a typical centered triangle only offset due to the star shoulders
   `> MID         -->  will print the widest portion, then print the the hollow triangle but reversed AND with extra constant number of spaces (dependant on the input) to match the stars wideness
   `> BOTTOM      -->  will print 4 hollow triangles with decreasing spaces, along with a middle space increasing with the increments of 4 to give the right leg of the star an increasing motion, the space inside the stars, space 2 and space 3 will however keep decreasing like the outer spaces,
-  `> ADJUSTMENTS --> the entire star will depend mostly on finetuning beyond the above criteria to achieve the desired results
+  `> ADJUSTMENTS --> the entire star will depend mostly on fine-tuning beyond the above criteria to achieve the desired results
 
 
 
@@ -171,7 +171,7 @@ void star_bottom(int n){
             
         }
         
-            // if the last line is reached add 2 addtional spaces, n-3 was reached thrugh adjustments
+            // if the last line is reached add 2 additional spaces, n-3 was reached though adjustments
             if (i>n-3)
             {
                 printf("  ");
