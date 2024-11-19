@@ -10,13 +10,12 @@
 * section:      BAI-1A
 
 
-*/ 
+*/
 
 #include <stdio.h>
 #include <string.h>
 
 int is_palin(char string[]){
-    int check = 1;
     int n = strlen(string);
 
     if (n%2==0)
@@ -26,20 +25,22 @@ int is_palin(char string[]){
     
     for (size_t i = 0; i < n/2; i++)
     {
-        if (string[0]!=string[n-1])
+        if (string[i]!=string[n-1-i])
         {
-            check = 0;
+            return 0;
+            
         }
         
     }
     
-    return check;
+    return 1;
 }
 
 int main(){
-    char palin[10][100] = {"madam", "racecar", "level", "radar"};
+    char palin[10][100] = {"madam", "racedar", "level", "radar","heloh"};
+    int n = sizeof(palin)/sizeof(palin[0]);
 
-    for (size_t i = 0; i < 10; i++)
+    for (size_t i = 0; i < 5; i++)
     {
         if (is_palin(palin[i]))
         {
