@@ -19,8 +19,10 @@
 #include <stdio.h>
 #include <string.h>
 
-#define FILE_NAME_student "student_data.text"
+#define FILE_NAME_student "student_data.txt"
 #define FILE_NAME_course  "course_data.bin"
+#define MAX_COURSES 4                       // per stduent
+#define MAX_STUDENTS 3
 
 
 struct Course
@@ -30,11 +32,13 @@ struct Course
     char instructor[50];
 };
 
+struct Course empty_course = {"",0,""};
+
 struct Student
 {
     char name[50];
     int roll;
-    struct Course courses[4]; // max number courses per student
+    struct Course courses[MAX_COURSES]; // max number courses per student
 };
 
 
@@ -89,11 +93,11 @@ int text_file_write(char file_name[],struct Student students[], int size){
     // no need to create a buffer
     for(i=0;i<size;i++){
         fprintf(fptr,"stud name: %s\n",students[i].name);
-        fprintf(fptr,"stud roll: %s\n",students[i].roll);
-        fprintf(fptr,"Enrolled courses:\n",);
-        for ( j = 0; j < 4; j++)
-        {
-            if (students[i].courses[j].name>0)
+        fprintf(fptr,"stud roll: %d\n",students[i].roll);
+        fprintf(fptr,"Enrolled courses:\n");
+        
+        for ( j = 0; j < MAX_COURSES; j++){
+            if (students[i].courses[j].name[0] != '\0') // check if the name filed is not empty
             {
                fprintf(fptr, "  - Course: %s (Code: %d, Instructor: %s)\n", 
                         students[i].courses[j].name, 
@@ -113,7 +117,7 @@ int text_file_write(char file_name[],struct Student students[], int size){
 
 }
 
-int text_file_read(char file_name[],struct employee_record employee_records[],int size){
+int text_file_read(char file_name[],struct Student students[], int size){
     int i,j;
     FILE *fptr;
     fptr = fopen(file_name,"r");
@@ -124,12 +128,32 @@ int text_file_read(char file_name[],struct employee_record employee_records[],in
         return -1; // custom err signal to prevent confusion with the value returned as salary
     }
 
-    for ( i = 0; i < size; i++)
-    {
-        fscanf(fptr,"studen")
-    }
-    
 
+    for(i=0;i<size;i++){
+        fscanf(fptr,"stud name: %49[^\n]\n",students[i].name);
+        fscanf(fptr,"stud roll: %d\n",&students[i].roll);
+        fscanf(fptr,"Enrolled courses:\n");
+
+        for (j = 0; j < MAX_COURSES; j++)
+        {
+            if (
+                //                             V` continue reading until brakcet is caught
+                fscanf(fptr, "  - Course: %49[^(] (Code: %d, Instructor: %49[^)])\n", //%49[^) continue reading until brakcet is caught
+                        students[i].courses[j].name,
+                        &students[i].courses[j].code,
+                        students[i].courses[j].instructor) == 3)
+            {
+                printf("read successfully\n");
+                // fscanf returns the how many values have been successfully read, in the example above 3 values have beeen sucessfully read hence 3 is returned
+            }
+            else
+            {   
+                printf("stopped reading\n");
+                break;
+            }
+        }
+        fscanf(fptr, "\n");
+    }
 
     fclose(fptr);
     // successful read, close the file
@@ -139,7 +163,7 @@ int text_file_read(char file_name[],struct employee_record employee_records[],in
 
 
 int main(){
-    int i;
+    int i,j;
 
     // input all courses available
     struct Course courses[10] = {
@@ -155,11 +179,16 @@ int main(){
         {"Machine Learning"           , 1010, "Prof. Thomas"}
     };
 
-    struct Student students[3] = {
+    struct Student students[MAX_STUDENTS] = {
         {
             "John Doe",           // name
             24001,                // roll number
-            courses[0]            // courses array (up to 4 courses)
+            {
+                courses[0],       // courses array (up to 4 courses)
+                courses[1],
+                empty_course,
+                empty_course,
+            }
             
         },
         {
@@ -167,14 +196,19 @@ int main(){
             24002, 
             {
                 courses[2],
-                courses[3]
+                courses[6],
+                empty_course,
+                empty_course,
             }
         },
         {
             "Mike Johnson",
             24003,
             {
-                courses[4]
+                courses[4],
+                empty_course,
+                empty_course,
+                empty_course,
             }
         }
     };
@@ -194,36 +228,57 @@ int main(){
         strcpy(courses[i].instructor,"");
     }
 
+
     // ! READ binary Courses FILE
     if (bin_file_read(FILE_NAME_course,courses,10)==-1)
     {
         return 1;
     }
-    
-    // ! present courses data from binary file in the console
+
+
+    // ! display courses data from binary file in the console
+    printf("\n\nCOURSES INFO:\n\n\n");
     for (i = 0; i <9; i++){
         printf("name: %s \ncode: %d \ninstructor: %s\n",courses[i].name,courses[i].code,courses[i].instructor);
         printf("---\n");
     }
+
     printf("name: %s \ncode: %d \ninstructor: %s\n",courses[i].name,courses[i].code,courses[i].instructor);
     
+
+
+
     // *--------------------------------------  text students  --------------------------------------* //
-    
+
+
+
+
     // ! WRITE text student FILE
     // write all the courses to a file
     if (text_file_write(FILE_NAME_student,students,3) == -1)
     {
         return 1;
     }
+
     
+
     // reset the buffer array, to validate correct file transfer
-    for (i = 0; i < 10; i++){
+    for (i = 0; i < MAX_STUDENTS; i++){
         strcpy(students[i].name,"");
         students[i].roll = 0;
-            strcpy(students[i].courses->name,"");
-            strcpy(students[i].courses->instructor,"");
-            students[i].courses->code=0;
+        for (j = 0; j < MAX_COURSES; j++)
+        {
+            
+            strcpy(students[i].courses[j].name,"");
+            strcpy(students[i].courses[j].instructor,"");
+            students[i].courses[j].code=0;
+        }
     }
+
+
+    printf("\n\nSTUDENTS INFO:\n\n\n");
+
+
 
     // ! READ text student FILE
     if (text_file_read(FILE_NAME_student,students,3)==-1)
@@ -231,6 +286,27 @@ int main(){
         return 1;
     }
     // file read in text will be displayed within the function
+
+    
+
+    // ! display text
+    for (i = 0; i < MAX_STUDENTS; i++){
+        printf("student name: %s\n",students[i].name);
+        printf("student roll: %d\n",students[i].roll );
+        printf("Enrolled Coursesq:\n");
+        for (j = 0; j < MAX_COURSES; j++)
+        {
+            if (students[i].courses[j].name[0] != '\0')
+            {
+               printf( "  - Course: %s (Code: %d, Instructor: %s)\n", 
+                        students[i].courses[j].name, 
+                        students[i].courses[j].code, 
+                        students[i].courses[j].instructor);
+
+            }
+        }
+    }
+
 
  return 0;
 }
