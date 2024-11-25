@@ -32,10 +32,70 @@
 */
 
 #include <stdio.h>
+#include <string.h>
+
+#define DATASET "Titanic-Dataset.csv"
+
+struct Person
+{
+    int   PassengerId;
+    int   Survived;
+    int   Pclass;
+    char  Name[95];
+    char  Sex[50];
+    int   Age;
+    int   SibSp;
+    int   Parch;
+    char  Ticket[50];
+    float Fare;
+    char  Cabin[50];
+    char  Embarked;
+};
+
+struct Person titanic_data[900];
+
+int text_file_read(struct Person titanic_data){
+    char line[100];
+    FILE *fptr;
+    fptr = fopen(DATASET,"r");
+
+    if (fptr == NULL)
+    {
+        return -1;
+    }
+
+    //                                      V`` keep reading until EOF
+    while (fgets(line,sizeof(line),fptr)!=NULL)
+    {
+
+    }
+    
+
+
+
+    fclose(fptr);
+    return 0;
+}
+
 
 int main(){
 
+    struct Person titanic_data;
 
+    /* if (text_file_read(titanic_data)==-1){
+        return 1;
+    } */
+
+
+   char test[50] = " helo , word,im,being,cutt";
+
+   char *token[20];
+   for (size_t i = 0; i < 4; i++)
+   {
+        *token = strtok(test,",");
+        printf("%s-%s",token,test);
+   }
+   
 
 
  return 0;
