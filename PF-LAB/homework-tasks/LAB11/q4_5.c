@@ -52,10 +52,12 @@ struct Person
     char  Embarked;
 };
 
+
 struct Person titanic_data[900];
 
-int text_file_read(struct Person titanic_data){
-    char line[100];
+int text_file_read(struct Person titanic_data[]){
+    int i=0;
+    char line[1024];
     FILE *fptr;
     fptr = fopen(DATASET,"r");
 
@@ -64,39 +66,90 @@ int text_file_read(struct Person titanic_data){
         return -1;
     }
 
-    //                                      V`` keep reading until EOF
-    while (fgets(line,sizeof(line),fptr)!=NULL)
+    // to skip header
+    fgets(line, sizeof(line), fptr);
+
+    while (
+        fscanf(fptr,"%d,%d,%d,%[^,],%[^,],%d,%d,%d,%[^,],%f,%[^,],%[^,]\n",
+            &titanic_data[i].PassengerId,
+            &titanic_data[i].Survived,
+            &titanic_data[i].Pclass,
+            titanic_data[i].Name,
+            titanic_data[i].Sex,
+            &titanic_data[i].Age,
+            &titanic_data[i].SibSp,
+            &titanic_data[i].Parch,
+            titanic_data[i].Ticket,
+            &titanic_data[i].Fare,
+            titanic_data[i].Cabin,
+            titanic_data[i].Embarked
+        ) !=0
+    )
     {
-
+        i++;
     }
-    
-
-
+    printf("i is : %d\n",i);
 
     fclose(fptr);
-    return 0;
+    return i;
 }
 
 
 int main(){
-
-    struct Person titanic_data;
+    int count,i;
+    //struct Person titanic_data[900];
 
     /* if (text_file_read(titanic_data)==-1){
         return 1;
     } */
 
 
-   char test[50] = " helo , word,im,being,cutt";
-
-   char *token[20];
+   
+   /*char test[50] = " helo , word,im,being,cutt";
+ char *token[20];
    for (size_t i = 0; i < 4; i++)
    {
         *token = strtok(test,",");
         printf("%s-%s",token,test);
    }
-   
+    */
 
+   printf("getting values into memory...\n");
+
+   // getting values into memory
+   count = text_file_read(titanic_data);
+   
+   if (count==-1)
+   {
+    return 1;
+   } 
+
+   
+   printf("successful!, count = %d\n",count);
+
+   // validating data transfer
+
+    printf("validating data transfer...\n");
+
+   for (i = 0; i < count; i++)
+   {
+        printf("%d,%d,%d,%s,%s,%d,%d,%d,%s,%f,%s,%s\n",
+            titanic_data[i].PassengerId,
+            titanic_data[i].Survived,
+            titanic_data[i].Pclass,
+            titanic_data[i].Name,
+            titanic_data[i].Sex,
+            titanic_data[i].Age,
+            titanic_data[i].SibSp,
+            titanic_data[i].Parch,
+            titanic_data[i].Ticket,
+            titanic_data[i].Fare,
+            titanic_data[i].Cabin,
+            titanic_data[i].Embarked
+        ); 
+   }
+   
+    printf("successful!\n");
 
  return 0;
 }
