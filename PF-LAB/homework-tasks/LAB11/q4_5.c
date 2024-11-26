@@ -43,19 +43,19 @@ struct Person
     int   Pclass;
     char  Name[95];
     char  Sex[50];
-    int   Age;
+    float Age;
     int   SibSp;
     int   Parch;
-    char  Ticket[50];
+    char  Ticket[100];
     float Fare;
-    char  Cabin[50];
+    char  Cabin[100];
     char  Embarked;
 };
 
 
-struct Person titanic_data[900];
+struct Person passenger[900];
 
-int text_file_read(struct Person titanic_data[]){
+int text_file_read(struct Person passenger[]){
     int i=0;
     char line[1024];
     FILE *fptr;
@@ -69,25 +69,45 @@ int text_file_read(struct Person titanic_data[]){
     // to skip header
     fgets(line, sizeof(line), fptr);
 
-    while (
-        fscanf(fptr,"%d,%d,%d,%[^,],%[^,],%d,%d,%d,%[^,],%f,%[^,],%[^,]\n",
-            &titanic_data[i].PassengerId,
-            &titanic_data[i].Survived,
-            &titanic_data[i].Pclass,
-            titanic_data[i].Name,
-            titanic_data[i].Sex,
-            &titanic_data[i].Age,
-            &titanic_data[i].SibSp,
-            &titanic_data[i].Parch,
-            titanic_data[i].Ticket,
-            &titanic_data[i].Fare,
-            titanic_data[i].Cabin,
-            titanic_data[i].Embarked
-        ) !=0
-    )
-    {
-        i++;
+    while (fgets(line, sizeof(line), fptr)){
+        if (
+            fscanf(fptr,"%d,%d,%d,%[^,],%[^,],%f,%d,%d,%[^,],%f,%[^,],%c\n",
+            &passenger[i].PassengerId,
+            &passenger[i].Survived,
+            &passenger[i].Pclass,
+            passenger[i].Name,
+            passenger[i].Sex,
+            &passenger[i].Age,
+            &passenger[i].SibSp,
+            &passenger[i].Parch,
+            passenger[i].Ticket,
+            &passenger[i].Fare,
+            passenger[i].Cabin,
+            passenger[i].Embarked
+            ) != EOF
+        )
+        {
+            /* if (!(passenger[i].PassengerId > 0)) {passenger[i].PassengerId  = -1;}
+            if (!(passenger[i].Survived    > 0)) {passenger[i].Survived     = -1;}
+            if (!(passenger[i].Pclass      > 0)) {passenger[i].Pclass       = -1;}
+            if (!(passenger[i].Age         > 0)) {passenger[i].Age          = -1;}
+            if (!(passenger[i].SibSp       > 0)) {passenger[i].SibSp        = -1;}
+            if (!(passenger[i].Parch       > 0)) {passenger[i].Parch        = -1;}
+            if (!(passenger[i].Fare        > 0)) {passenger[i].Fare         = -1;}
+
+
+            if (strlen(passenger[i].Name)    ==    0) {strcpy (passenger[i].Name,"unknown");}
+            if (strlen(passenger[i].Sex)     ==    0) {strcpy (passenger[i].Sex,"unknown");}
+            if (strlen(passenger[i].Ticket)  ==    0) {strcpy (passenger[i].Ticket,"unknown");}
+            if (strlen(passenger[i].Cabin)   ==    0) {strcpy(passenger[i].Cabin,"unknown");}
+            if (passenger[i].Embarked        == '\0') {passenger[i].Embarked='X';} */
+
+            i++;
+        }
+        
+       
     }
+
     printf("i is : %d\n",i);
 
     fclose(fptr);
@@ -97,9 +117,9 @@ int text_file_read(struct Person titanic_data[]){
 
 int main(){
     int count,i;
-    //struct Person titanic_data[900];
+    //struct Person passenger[900];
 
-    /* if (text_file_read(titanic_data)==-1){
+    /* if (text_file_read(passenger)==-1){
         return 1;
     } */
 
@@ -117,8 +137,8 @@ int main(){
    printf("getting values into memory...\n");
 
    // getting values into memory
-   count = text_file_read(titanic_data);
-   
+   count = text_file_read(passenger);
+   printf("done...\n");
    if (count==-1)
    {
     return 1;
@@ -130,22 +150,22 @@ int main(){
    // validating data transfer
 
     printf("validating data transfer...\n");
-
    for (i = 0; i < count; i++)
    {
-        printf("%d,%d,%d,%s,%s,%d,%d,%d,%s,%f,%s,%s\n",
-            titanic_data[i].PassengerId,
-            titanic_data[i].Survived,
-            titanic_data[i].Pclass,
-            titanic_data[i].Name,
-            titanic_data[i].Sex,
-            titanic_data[i].Age,
-            titanic_data[i].SibSp,
-            titanic_data[i].Parch,
-            titanic_data[i].Ticket,
-            titanic_data[i].Fare,
-            titanic_data[i].Cabin,
-            titanic_data[i].Embarked
+        //printf("star\n");
+        printf("%d,%d,%d,%s,%s,%d,%d,%d,%s,%f,%s,%c \n",
+            passenger[i].PassengerId,
+            passenger[i].Survived,
+            passenger[i].Pclass,
+            passenger[i].Name,
+            passenger[i].Sex,
+            passenger[i].Age,
+            passenger[i].SibSp,
+            passenger[i].Parch,
+            passenger[i].Ticket,
+            passenger[i].Fare,
+            passenger[i].Cabin,
+            passenger[i].Embarked
         ); 
    }
    
