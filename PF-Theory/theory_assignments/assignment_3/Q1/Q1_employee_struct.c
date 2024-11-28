@@ -20,10 +20,46 @@
 */
 
 #include <stdio.h>
+#include <string.h>
+
+struct Employee
+{
+    int employeeCode;
+    char employeeName[50];
+    int dateOfJoining;
+};
+
+
+
+void assign_values(int code, char name[50],int date, struct Employee emp){
+
+    strcpy(emp.employeeName,name);
+    emp.employeeCode = code;
+    emp.dateOfJoining = date;
+
+}
+
+void get_values(int code, char name[50],int date){
+
+    printf("get code:");
+    scanf("%d",code);
+    printf("get name[50]:");
+    scanf("%d",name[50]);
+    printf("get date:");
+    scanf("%d",date);
+
+}
+
 
 int main(){
 
+    int code;
+    char name[50];
+    int date;
 
+    struct Employee employees[4];
+
+    get_values(code,name,date);
 
 
  return 0;
