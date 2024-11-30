@@ -168,6 +168,8 @@ int main(){
             passenger[i].Embarked
         ); 
    }
+
+   
    
     printf("successful!\n");
 
