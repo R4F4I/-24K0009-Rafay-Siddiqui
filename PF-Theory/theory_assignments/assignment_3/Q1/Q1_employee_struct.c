@@ -26,41 +26,55 @@ struct Employee
 {
     int employeeCode;
     char employeeName[50];
-    int dateOfJoining;
+    int dateOfJoining;      // year of joining
 };
 
 
 
-void assign_values(int code, char name[50],int date, struct Employee emp){
 
-    strcpy(emp.employeeName,name);
-    emp.employeeCode = code;
-    emp.dateOfJoining = date;
-
-}
-
-void get_values(int code, char name[50],int date){
+void getValues(struct Employee emp){
 
     printf("get code:");
-    scanf("%d",code);
-    printf("get name[50]:");
-    scanf("%d",name[50]);
+    scanf("%d",emp.employeeCode);
+    printf("get name:");
+    scanf("%s",emp.employeeName);
     printf("get date:");
-    scanf("%d",date);
+    scanf("%d",emp.dateOfJoining);
 
 }
 
+int tenure_check(struct Employee emp){
+    int current_year = 2024;
+    printf("Enter current year:");
+    scanf("%d",&current_year);
+    int tenure = current_year - emp.dateOfJoining;
+    return tenure;
+}
+
+void print_details(struct Employee emp){
+    printf("name: %s\n",emp.employeeName);
+    printf("code: %d\n",emp.employeeCode);
+    printf("date joined: %d\n",emp.dateOfJoining);
+}
 
 int main(){
 
-    int code;
-    char name[50];
-    int date;
-
+    int count = 0;
     struct Employee employees[4];
 
-    get_values(code,name,date);
-
+    for (size_t i = 0; i < 4; i++)
+    {
+        getValues(employees[i]);
+    }
+    
+    for (size_t i = 0; i < 4; i++)
+    {
+        if (tenure_check(employees[i])>3){
+            print_details(employees[i]);
+            count++;
+        }
+    }
+    printf("a total of %d employees have tenure greater than 3 years\n",count);
 
  return 0;
 }

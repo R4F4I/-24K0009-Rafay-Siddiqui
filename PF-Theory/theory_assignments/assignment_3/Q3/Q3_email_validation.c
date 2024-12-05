@@ -30,11 +30,72 @@
 */
 
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+#define BUFF 50
+
+int validateEmail(char *email){
+    int len = strlen(email);
+
+    // all three of these have to be satisfied for the email to be valid
+    int oneAt = 0;
+    int dotAfterAt = 0;
+    int nonEmpty=0;
+
+    if (len!=0)
+    {
+        nonEmpty = 1;
+    }
+    
+
+    for (size_t i = 0; i < len; i++)
+    {
+        // check if '@' is present
+        if (*(email+i)=='@')
+        {
+            oneAt = 1;
+        }
+        
+        // if another '@' is found, the email is invalid
+        if (*(email+i+1)=='@' && oneAt == 1)
+        {
+            oneAt = 0;
+            break; // leave the loop as soon as we find another '@'
+        }
+
+        // email can have multiple dots but having atleast after '@' is required
+
+        if (oneAt == 1 && *(email+i)=='.')
+        {
+            dotAfterAt = 1;
+        }
+        
+
+    }
+    
+    // if all three are valid returns 1 else 0
+    // printf("%d %d %d\n",oneAt,nonEmpty,dotAfterAt);
+    return oneAt*nonEmpty*dotAfterAt;
+
+
+}
+
 
 int main(){
 
+    
+
+    char *email= malloc(20*sizeof(char));
+    strcpy(email,"test.@gm@ail.com");
+    int len = strlen(email);
+    email = realloc(email,len*sizeof(char));
+
+    printf("%s email\n",validateEmail(email)?"valid": "invalid");
+    
 
 
+    free(email);
 
  return 0;
 }
