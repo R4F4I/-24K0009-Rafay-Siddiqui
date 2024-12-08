@@ -88,16 +88,23 @@ void AddSupplies(char ***speciesSupplies, int i,int suppNum){
 }
 
 
-void updateSupplies(){}
+void updateSupplies(char **speciesSupplies,int petsNum, int suppNum){
+    getchar();
+    petsNum--;
+    suppNum--;
+    char n;
+    printf("enter new val for supply %d for pet %d: ",suppNum+1,petsNum+1);
+    scanf("%c",&n);
+    getchar();
+    speciesSupplies[petsNum][suppNum]=n;
+}
+
 void removeSpecies(char **speciesSupplies, int pet,int petsNum){
+    pet--; // because the values are 0-index, if user want pet 1 removed , pet[0] will be removed
     int i,j=0;
-    // overwrite the removed pet's supplies with the next pet's supplies
-    // then free memory of the last array
-    for (i = pet; i < petsNum - 1; i++)
-    {
-        speciesSupplies[i] = speciesSupplies[i + 1];
-    }
-    free(speciesSupplies[petsNum]);
+    
+    // simply convert to null pointer
+    (speciesSupplies[pet]) = NULL;
 }
 
 void displayInventory(char **speciesSupplies, int petsNum){
@@ -134,7 +141,7 @@ int main(){
 
     int petsNum = 5;
     int suppNum;
-    int i,j;
+    int i,j,a,b;
     char **speciesSupplies;
 
     // init
@@ -165,7 +172,15 @@ int main(){
     printf("\n\nInventory:\n\n");
     displayInventory(speciesSupplies,petsNum);
     
+    printf("\n\nupdating pet supply...\n\n");
+    printf("enter pet num: ");
+    scanf("%d",&a);
+    printf("enter supp num: ");
+    scanf("%d",&b);
+    updateSupplies(speciesSupplies,a,b);
     
+    printf("\n\nInventory:\n\n");
+    displayInventory(speciesSupplies,petsNum);
     
     freeMem(speciesSupplies,petsNum,suppNum);
     return 0;
