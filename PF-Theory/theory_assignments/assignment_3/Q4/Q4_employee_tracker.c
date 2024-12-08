@@ -54,11 +54,209 @@
 */
 
 #include <stdio.h>
+#include <stdlib.h>
+
+struct employees
+{
+    int **ratings, totalScore;
+};
+
+void inputEmployees(int **ratings, int numEmployees, int numPeriods);
+void displayPerformance(int **ratings, int numEmployees,int numPeriods);
+void findEmployeeOfTheYear(int **ratings, int numEmployees, int numPeriods);
+void findHighestRatedPeriod(int **ratings, int numEmployees, int numPeriods);
+void findWorstPerformingEmployee(int **ratings, int numEmployees, int numPeriods);
+void freeRatings(int **ratings, int numEmployees);
+
+int mat_el(int **arr,int i,int j ){
+    return *(*(arr+i)+j);
+}
+
+/* Each rating should be between 1 and 10 (inclusive). Input validation should be
+implemented to enforce this. */
+
+void inputEmployees(int **ratings, int numEmployees, int numPeriods){
+    int i,j;
+    for (i = 0; i < numEmployees; i++){
+        for (j = 0; j < numPeriods; j++){
+            printf("Enter rating for employee %d in period %d: ", i + 1,j + 1);
+            // scanf("%d",((ratings+j)+i*numEmployees));
+            scanf("%d",&ratings[i][j]);
+            if (mat_el(ratings,i,j) < 1 || mat_el(ratings,i,j) > 10){
+                printf("Invalid rating. Please enter a rating between 1 and 10.\n");
+                j--;
+            }
+        }
+    }
+}
+
+/* displays the performance ratings for each employee across all
+evaluation periods. */
+
+void displayPerformance(int **ratings, int numEmployees,int numPeriods){
+    int i,j;
+    for (i = 0; i < numEmployees; i++)
+    {
+        printf("Employee %d:\n", i + 1);
+        for (j = 0; j < numPeriods; j++)
+        {
+            printf("    Period %d: %d\n", j + 1, ratings[i][j]);
+        }
+    }
+}
+
+/* calculate and return the index of the employee
+with the highest average rating. */
+
+
+void findEmployeeOfTheYear(int **ratings, int numEmployees, int numPeriods){
+    // dynamically create temp arr to store all the employee's average ratings
+    double *temp = malloc(numEmployees * sizeof(double));
+    int i,j;
+    // store average ratings in temp array of all employees
+    for (i = 0; i < numEmployees; i++)
+    {
+        for (j = 0; j < numPeriods; j++)
+        {
+            temp[i]+=mat_el(ratings,i,j);
+        }
+        temp[i]/=numPeriods;
+    }
+    // find max average rating
+    int max = 0;
+    for (i = 0; i < numEmployees; i++)
+    {
+        if (temp[i] > temp[max])
+            max = i;
+    }
+    // print the employee with the highest average rating
+    printf("Employee of the year: %d\n", max + 1);
+
+}
+
+/* calculate and return the evaluation period with
+the highest average rating across all employees. */
+
+void findHighestRatedPeriod(int **ratings, int numEmployees, int numPeriods){
+    // dynamically create temp arr to store all the employee's average ratings
+    double *temp = malloc(numEmployees * sizeof(double));
+    int i,j;
+    // sum ratings of all employees of a certain period
+    for (i = 0; i < numEmployees; i++)
+    {
+        for (j = 0; j < numPeriods; j++)
+        {
+            temp[i]+=mat_el(ratings,j,i);
+        }
+    }
+
+    // find the highest rated period
+    int max = 0;
+    for (i = 0; i < numPeriods; i++)
+    {
+        if (temp[i] > temp[max])
+            max = i;
+    }
+    // print the employee with the highest average rating
+    printf("highest rated period: %d\n", max+1);
+    
+}
+
+/* calculate and return the index of the employee
+with the lowest average rating. */
+
+void findWorstPerformingEmployee(int **ratings, int numEmployees, int numPeriods){
+    // SAME AS findHighestRatedEmployee, just return the index of the employee with the lowest average rating
+
+    // dynamically create temp arr to store all the employee's average ratings
+    double *temp = malloc(numEmployees * sizeof(double));
+    int i,j;
+    // store average ratings in temp array of all employees
+    for (i = 0; i < numEmployees; i++)
+    {
+        for (j = 0; j < numPeriods; j++)
+        {
+            temp[i]+=mat_el(ratings,i,j);
+        }
+        temp[i]/=numPeriods;
+    }
+    // find max average rating
+    int min = 999;
+    for (i = 0; i < numEmployees; i++)
+    {
+        if (temp[i] < temp[min])
+            min = i;
+    }
+    // print the employee with the highest average rating
+    printf("worst Employee: %d\n", min + 1);
+}
+
+
+// Function to free allocated memory for ratings
+void freeRatings(int **ratings, int numEmployees) {
+    for (int i = 0; i < numEmployees; i++) {
+        free(ratings[i]); // Free each row
+    }
+    free(ratings); // Free the array of pointers
+}
+
+int strLen(char *str){
+    int len = 0;
+    while (*(str+len) != '\0'){
+        len++;
+    } return len;
+}
+
+void fancyPrint(char *str) {
+    int len = strLen(str),i=0;
+    printf("\n\n\n");
+    while (i!=(len+4))
+    {
+        printf("*"); i++;
+    }i=0;
+    printf("\n");
+    printf("* %s *\n",str);
+    while (i!=(len+4))
+    {
+        printf("*");i++;
+    }i=0;
+    printf("\n\n\n");
+}
 
 int main(){
 
+    struct employees emp;
+
+    int numEmployees = 5;
+    int numPeriods = 3;
+    int i,j;
+    
+    // allocate memory for the ratings array
+    // done by first creating an array of pointers, then each pointer points to an array of integers also allocated with memory
+    emp.ratings = malloc(numEmployees * sizeof(int *));
+    for (i = 0; i < numEmployees; i++) {
+        emp.ratings[i] = malloc(numPeriods * sizeof(int));
+    }
+
+    fancyPrint("Input employees");
+    inputEmployees(emp.ratings,numEmployees,numPeriods);
+
+    fancyPrint("display Performance");
+    displayPerformance(emp.ratings,numEmployees,numPeriods);
+
+    fancyPrint(" employee of the year");
+    findEmployeeOfTheYear(emp.ratings,numEmployees,numPeriods);
+    
+    fancyPrint(" highest rated period");
+    findHighestRatedPeriod(emp.ratings,numEmployees,numPeriods);
+    
+    fancyPrint("Worst Performing Employee");
+    findWorstPerformingEmployee(emp.ratings,numEmployees,numPeriods);
+    
 
 
+
+    freeRatings(emp.ratings,numEmployees);
 
  return 0;
 }

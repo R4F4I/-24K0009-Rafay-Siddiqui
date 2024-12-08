@@ -5,9 +5,9 @@
 ? | You're building an inventory system for a pet shop called "Pets in Heart" that keeps track of
 ? | different species of animals and their specific supplies (e.g., food, toys, bedding). The shop
 ? | inventory system uses a 2D dynamic array char** speciesSupplies where:
-? |     ● Rows are explicitly set for each species (e.g., "Dogs," "Cats," "Parrots"), and each row
+? |     o Rows are explicitly set for each species (e.g., "Dogs," "Cats," "Parrots"), and each row
 ? |       corresponds to a different species.
-? |     ● Columns are dynamically allocated for each species to hold their specific supplies (e.g.,
+? |     o Columns are dynamically allocated for each species to hold their specific supplies (e.g.,
 ? |       "Food," "Leash," "Toys").
 ? | 
 ? | Task:
