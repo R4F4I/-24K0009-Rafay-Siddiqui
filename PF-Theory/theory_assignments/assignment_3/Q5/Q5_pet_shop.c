@@ -165,6 +165,7 @@ int main(){
     
     
     printf("\n\nremoving a specie...\n\n");
+    // remove 3rd specie
     removeSpecies(speciesSupplies,3,petsNum);
     printf("\nsuccess!");
 

@@ -1,3 +1,7 @@
+---
+tags:
+  - linker-exclude
+---
 [](program.c)
 ## datatypes
 - int
